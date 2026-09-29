@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbourline — A3 Proposal Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#0B1F3A; --harbour:#1B5FA8; --coral:#FF6B4A; --teal:#2E8C8C; --sand:#F4EDE3; --paper:#FFFFFF; --grey:#5A5F6B; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#10141B;font-family:Inter,system-ui,sans-serif;overflow:hidden}
+  #stage{position:fixed;inset:0;display:grid;place-items:center}
+  .deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+  .slide{position:absolute;inset:0;background:var(--paper);padding:52px 64px;opacity:0;visibility:hidden;transition:opacity .35s ease;overflow:hidden}
+  .slide.active{opacity:1;visibility:visible}
+  .kicker{font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--coral)}
+  h1{font-family:Fraunces,serif;font-size:64px;letter-spacing:-.02em;color:var(--ink);line-height:1.05}
+  h2{font-family:Fraunces,serif;font-size:38px;letter-spacing:-.015em;color:var(--ink);line-height:1.1}
+  .sub{font-size:16.5px;color:var(--grey);line-height:1.55;max-width:900px}
+  /* full-bleed photo slides */
+  .photo{position:absolute;inset:0;background-size:cover;background-position:center;background-color:var(--ink)}
+  .photo .scrim{position:absolute;inset:0}
+  /* layout helpers */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:26px}
+  .card{border:1.5px solid #E2DACA;border-radius:14px;padding:22px 24px;background:var(--sand)}
+  .card h3{font-size:15px;font-weight:800;color:var(--ink);letter-spacing:.02em;margin-bottom:7px}
+  .card p,.card li{font-size:15px;color:#3E4450;line-height:1.62}
+  .card ul{padding-left:17px}
+  .card .stat{font-family:Fraunces,serif;font-size:40px;font-weight:700;color:var(--harbour);line-height:1}
+  .card .statlbl{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--grey);margin-top:6px;line-height:1.35}
+  .card.wht{background:#fff}
+  /* agenda */
+  .agrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:38px}
+  .ag{display:grid;grid-template-columns:54px 1fr;align-items:center;gap:14px;border:1.5px solid #E2DACA;border-radius:12px;padding:19px 22px;background:#fff}
+  .ag .n{font-family:Fraunces,serif;font-size:30px;font-weight:700;color:var(--coral);text-align:center}
+  .ag .t{font-size:15.5px;font-weight:700;color:var(--ink)}
+  .ag .d{font-size:13px;color:var(--grey);margin-top:4px;line-height:1.45}
+  /* stats */
+  .stripbox{border:1.5px solid #E2DACA;border-radius:12px;overflow:hidden;position:relative;background:#fff}
+  .stripbox img{width:100%;height:100%;object-fit:cover;display:block}
+  .stripbox .cap{position:absolute;left:8px;right:8px;bottom:8px;background:rgba(11,31,58,.85);color:#fff;border-radius:8px;padding:5px 10px;font-size:11px;font-weight:600;line-height:1.3}
+  /* personas */
+  .persona{display:grid;grid-template-columns:185px 1fr;gap:0;border:1.5px solid #E2DACA;border-radius:14px;overflow:hidden;margin-bottom:10px;background:#fff}
+  .persona .who{padding:14px 16px;background:var(--ink);color:#fff;display:flex;flex-direction:column;justify-content:center}
+  .persona .who .ava{width:36px;height:36px;border-radius:50%;object-fit:cover;margin-bottom:5px;border:2px solid rgba(255,255,255,.35);display:block}
+  .persona .who .nm{font-family:Fraunces,serif;font-size:24px;font-weight:700}
+  .persona .who .rl{font-size:11.5px;color:#B9C6D6;margin-top:4px;line-height:1.4}
+  .persona .who .tag{margin-top:8px;align-self:start;background:var(--coral);color:#fff;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:3px 10px}
+  .persona .who .tag.alt{background:var(--teal)}
+  .persona .bd{padding:11px 18px;font-size:13px;color:#3E4450;line-height:1.45}
+  .persona .bd b{color:var(--ink)}
+  /* matrix */
+  .mrow{display:grid;grid-template-columns:170px 1fr 1.25fr;gap:12px;align-items:stretch;margin-bottom:26px}
+  .mrow .p{border-radius:12px;padding:18px 20px;color:#fff;display:flex;flex-direction:column;justify-content:center}
+  .mrow .p .nm{font-family:Fraunces,serif;font-size:19px;font-weight:700}
+  .mrow .p .rl{font-size:10.5px;opacity:.8;margin-top:2px}
+  .mrow .need{background:#FDF1EE;border-left:4px solid #C43E2E;border-radius:0 10px 10px 0;padding:16px 18px;font-size:14px;color:#5A2A20;line-height:1.6}
+  .mrow .resp{background:#EDF3FB;border-left:4px solid var(--harbour);border-radius:0 10px 10px 0;padding:16px 18px;font-size:14px;color:var(--ink);line-height:1.6}
+  .mhead{display:grid;grid-template-columns:170px 1fr 1.25fr;gap:12px;margin-bottom:18px}
+  .mhead span{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#9AA0AA;padding:0 4px}
+  /* gap table */
+  .gaprow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;align-items:center}
+  .gaprow .g{border-left:4px solid #C43E2E;background:#FDF1EE;border-radius:0 10px 10px 0;padding:17px 20px;font-size:15px;color:#5A2A20;font-weight:600}
+  .gaprow .f{border-left:4px solid var(--harbour);background:#EDF3FB;border-radius:0 10px 10px 0;padding:17px 20px;font-size:15px;color:var(--ink);font-weight:600}
+  /* sitemap chips */
+  .lvlrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+  .chip{border:2px solid var(--ink);border-radius:10px;padding:16px 24px;font-size:15.5px;font-weight:700;background:#fff}
+  .chip.core{background:var(--ink);color:#fff}
+  .chip .lv{display:block;font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--coral);margin-bottom:2px}
+  .chip .lv.dark{color:#B9C6D6}
+  .conn{height:36px;width:2px;background:var(--ink);margin:0 auto}
+  .smwrap{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  /* flow */
+  .flow{display:flex;align-items:center;gap:10px;margin-top:20px}
+  .fstep{border:2px solid var(--ink);border-radius:99px;padding:13px 20px;font-size:14px;font-weight:700;background:#fff;white-space:nowrap}
+  .fstep.hot{background:var(--coral);border-color:var(--coral);color:#fff}
+  .farr{color:#9AA0AA;font-weight:800;font-size:15px}
+  /* design system */
+  .pal{display:flex;gap:10px}
+  .sw{flex:1;border-radius:12px;padding:17px 18px;color:#fff;font-size:12px;font-weight:700;line-height:1.4;border:1px solid rgba(0,0,0,.08)}
+  .sw .hex{font-weight:500;opacity:.85;display:block;font-size:10.5px;margin-top:2px}
+  .dsrow{display:grid;grid-template-columns:1.05fr 1.15fr 1.6fr;gap:16px;margin-top:30px}
+  .dscard{border:1.5px solid #E2DACA;border-radius:12px;background:#fff;padding:20px 22px}
+  .dscard h4{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#9AA0AA;margin-bottom:10px}
+  .dispf{font-family:Fraunces,serif;font-size:30px;font-weight:700;color:var(--ink);line-height:1.1}
+  .dispb{font-size:13px;color:#3E4450;line-height:1.5;margin-top:8px}
+  .btnpill{display:inline-block;background:var(--coral);color:#fff;border-radius:99px;padding:9px 20px;font-size:13px;font-weight:800;letter-spacing:.02em}
+  .chipsm{display:inline-block;border:1.8px solid var(--ink);border-radius:99px;padding:6px 13px;font-size:12px;font-weight:700;background:#fff;margin:0 6px 8px 0}
+  .chipsm.on{background:var(--ink);color:#fff}
+  .badge{display:inline-block;border-radius:8px;padding:4px 10px;font-size:11.5px;font-weight:800;margin:0 6px 8px 0}
+  .badge.free{background:#E5F0E9;color:#1E5B3A}
+  .badge.cost{background:#FDF1EE;color:#8A2B1C}
+  .badge.book{background:#E8EEF7;color:#1B5FA8}
+  .icons{display:flex;gap:14px;margin-top:10px;align-items:center}
+  .icons svg{width:26px;height:26px;stroke:var(--ink);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .radii{display:flex;gap:12px;align-items:flex-end;margin-top:10px}
+  .rbox{background:var(--sand);border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:var(--ink)}
+  /* figures */
+  .figbox{border:1.5px solid #E2DACA;border-radius:14px;background:#fff;overflow:hidden;position:relative}
+  .figbox img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
+  .figbox .cap{position:absolute;left:14px;bottom:14px;right:14px;background:rgba(11,31,58,.86);color:#fff;border-radius:10px;padding:9px 14px;font-size:13px;line-height:1.4}
+  .figbox .cap b{color:#FFB49B}
+  /* closing */
+  .close .big{font-family:Fraunces,serif;font-size:52px;color:#fff;line-height:1.12;letter-spacing:-.01em}
+  .close .big em{font-style:normal;color:var(--coral)}
+  /* infographics */
+  .barrow{margin-bottom:17px}
+  .barrow .btl{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:5px}
+  .barrow .btl .bv{font-family:Fraunces,serif;font-size:19px;font-weight:700;color:var(--harbour)}
+  .barrow .track{height:11px;border-radius:6px;background:#EDE6D8;overflow:hidden}
+  .barrow .fill{height:100%;border-radius:6px;background:var(--harbour)}
+  .barrow .fill.coral{background:var(--coral)}
+  .barrow .fill.teal{background:var(--teal)}
+  .donut{width:132px;height:132px;border-radius:50%;display:grid;place-items:center;position:relative;flex:none}
+  .donut .hole{width:88px;height:88px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center}
+  .donut .hole .dn{font-family:Fraunces,serif;font-size:30px;font-weight:700;color:var(--ink);line-height:1}
+  .donut .hole .dl{font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--grey);margin-top:3px}
+  .legend{display:flex;flex-direction:column;gap:9px;justify-content:center}
+  .legend .li{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:#3E4450}
+  .legend .dot{width:13px;height:13px;border-radius:4px;flex:none}
+  .legend .li .pct{margin-left:auto;font-family:Fraunces,serif;font-weight:700;font-size:16px;color:var(--ink)}
+  /* diff table */
+  .difftab{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+  .difftab .dh{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#9AA0AA}
+  .difftab .dc{font-size:13.5px;line-height:1.55;padding:15px 16px;border-radius:10px}
+  .difftab .dc.old{background:#F7F3EC;color:#5A5F6B}
+  .difftab .dc.new{background:#EDF3FB;color:var(--ink);font-weight:600}
+  /* loop */
+  .loopnode{border:2px solid var(--ink);border-radius:12px;padding:17px 20px;font-size:14px;font-weight:700;background:#fff;text-align:center;line-height:1.35}
+  .loopnode .sm{display:block;font-size:10.5px;font-weight:500;color:var(--grey);margin-top:2px}
+  .loopnode.hot{background:var(--coral);border-color:var(--coral);color:#fff}
+  .loopnode.hot .sm{color:#FFE0D4}
+  /* notes + chrome */
+  #notes{position:fixed;left:16px;right:16px;bottom:14px;background:rgba(16,20,27,.92);color:#E8ECF3;border-radius:12px;padding:12px 18px;font-size:14px;line-height:1.5;display:none;z-index:50}
+  #notes.show{display:block}
+  #nav{position:fixed;top:14px;right:18px;color:#6B7484;font-size:13px;font-weight:700;z-index:50;letter-spacing:.05em}
+  #nav b{color:#fff}
+  .hint{position:fixed;bottom:14px;right:18px;color:#4A5261;font-size:11.5px;z-index:50}
+</style>
+</head>
+<body>
+<div id="stage"><div class="deck" id="deck">
+
+  <!-- S1 cover -->
+  <section class="slide cover">
+    <div class="photo" style="background-image:url('photos/harbour-bridge-opera.jpg')"><div class="scrim" style="background:linear-gradient(105deg, rgba(11,31,58,.93) 0%, rgba(11,31,58,.72) 45%, rgba(11,31,58,.25) 100%)"></div></div>
+    <div style="position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;gap:20px">
+      <div class="kicker" style="color:#FF8A6B">Assessment A3 · Web Proposal</div>
+      <div style="width:96px;height:8px;border-radius:4px;background:var(--coral)"></div>
+      <h1 style="color:#fff">Harbourline</h1>
+      <p class="sub" style="color:#E4EAF2;max-width:720px">A Sydney tourism website that plans your visit by <b style="color:#fff">activity, time of day and budget</b> — not by suburb. Concept, research, personas, IA, design system, sketches and wireframes.</p>
+      <div style="display:inline-block;border:2px solid #fff;color:#fff;border-radius:99px;padding:6px 16px;font-size:13px;font-weight:700;letter-spacing:.08em;width:max-content">Nuo Yan Li · 560879285</div>
+      <div style="font-size:14px;color:#C4CEDC;line-height:1.5">University of Sydney · DECO1016 Introduction to Web Design · A3 Web Proposal · 28 September 2026</div>
+    </div>
+  </section>
+
+  <!-- S2 agenda -->
+  <section class="slide">
+    <div class="kicker">How this proposal unfolds</div>
+    <h2>From research to wireframe</h2>
+    <div class="agrid">
+      <div class="ag"><div class="n">1</div><div><div class="t">Research &amp; benchmarking</div><div class="d">Market data, visitor behaviour, sydney.com gap analysis</div></div></div>
+      <div class="ag"><div class="n">2</div><div><div class="t">The concept</div><div class="d">Harbourline — plan by experience, time and budget</div></div></div>
+      <div class="ag"><div class="n">3</div><div><div class="t">Personas &amp; decisions</div><div class="d">Three evidence-based personas mapped to concrete design responses</div></div></div>
+      <div class="ag"><div class="n">4</div><div><div class="t">Information architecture</div><div class="d">Shallow, experience-first sitemap and key IA decisions</div></div></div>
+      <div class="ag"><div class="n">5</div><div><div class="t">Visual design</div><div class="d">Moodboard and a complete design system, executed in CSS</div></div></div>
+      <div class="ag"><div class="n">6</div><div><div class="t">Sketches → wireframes</div><div class="d">Three explored directions, a pivotal decision, full annotated wireframe sets</div></div></div>
+    </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px;height:132px">
+      <div class="stripbox"><img src="photos/bridge-daytime.jpg" alt="Harbour Bridge and Opera House by day"><div class="cap">Benchmarked: sydney.com organises by suburb — not by what you want to do</div></div>
+      <div class="stripbox"><img src="photos/opera-house.jpg" alt="Sydney Opera House"><div class="cap">10.9M visits a year — the city is planned around experiences</div></div>
+      <div class="stripbox"><img src="photos/bondi-beach.jpg" alt="Bondi Beach"><div class="cap">The personas: time-poor, cost-aware, deciding on a phone</div></div>
+    </div>
+    <p class="sub" style="margin-top:16px">Every later decision is traceable back to the research and the personas — I'll show that chain explicitly.</p>
+  </section>
+
+  <!-- S3 research numbers -->
+  <section class="slide">
+    <div class="kicker">Background research · the market</div>
+    <h2>One city, many experiences</h2>
+    <div class="cols" style="margin-top:22px;gap:24px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card" style="padding:16px 20px">
+          <div class="barrow" style="margin-bottom:11px">
+            <div class="btl"><span>Domestic visitors — yr to Mar 2026</span><span class="bv">63.6M</span></div>
+            <div class="track"><div class="fill" style="width:100%"></div></div>
+          </div>
+          <div class="barrow" style="margin-bottom:0">
+            <div class="btl"><span>International arrivals — 2025</span><span class="bv">8.9M</span></div>
+            <div class="track"><div class="fill coral" style="width:14%"></div></div>
+          </div>
+          <p style="font-size:11px;color:var(--grey);margin-top:9px">Bars to scale · Destination NSW · TRA</p>
+        </div>
+        <div class="card" style="padding:16px 20px">
+          <div class="barrow" style="margin-bottom:11px">
+            <div class="btl"><span>Total visitor spend (intl arrivals)</span><span class="bv">$192.4B</span></div>
+            <div class="track"><div class="fill" style="width:100%"></div></div>
+          </div>
+          <div class="barrow" style="margin-bottom:0">
+            <div class="btl"><span>Domestic spend</span><span class="bv">$20.8B</span></div>
+            <div class="track"><div class="fill teal" style="width:11%"></div></div>
+          </div>
+          <p style="font-size:11px;color:var(--grey);margin-top:9px">Bars to scale · record year — TRA</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:18px;align-items:stretch">
+        <div class="card" style="display:flex;align-items:center;justify-content:center;flex:none">
+          <div class="donut" style="background:conic-gradient(var(--harbour) 0 64%, #E8E2D6 64% 100%)"><div class="hole"><div><div class="dn">64%</div><div class="dl">repeaters</div></div></div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;justify-content:center">
+          <p style="font-size:15px;color:var(--ink);line-height:1.5"><b>Nearly two in three</b> international visitors are returning — they've seen the icons and want <b>beyond them</b>. The site must convert first-timers fast, then serve depth.</p>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:28px;height:170px">
+      <div class="stripbox"><img src="photos/opera-house.jpg" alt="Sydney Opera House"><div class="cap">Opera House — 10.9M visits/yr</div></div>
+      <div class="stripbox"><img src="photos/bridge-daytime.jpg" alt="Sydney Harbour Bridge"><div class="cap">Harbour Bridge — 8.2M visits/yr</div></div>
+      <div class="stripbox"><img src="photos/ferry-boat.jpg" alt="Manly ferry"><div class="cap">Manly ferry — free, 20–30 min</div></div>
+    </div>
+  </section>
+
+  <!-- S4 research insights -->
+  <section class="slide">
+    <div class="kicker">Background research · place insights</div>
+    <h2>What Sydney actually is, for visitors</h2>
+    <div class="cols" style="margin-top:32px;grid-template-columns:1fr 1fr 0.8fr">
+      <div style="display:grid;gap:12px">
+        <div class="card wht"><h3>A harbour, not a grid</h3><p>Experiences scatter across harbour, bays, beaches and the CBD — walking and ferries matter as much as driving. A suburb-based IA fights the city's shape.</p></div>
+        <div class="card wht"><h3>Free is a superpower</h3><p>Opera House exterior, Botanic Garden, Manly ferry ($0–20), beaches — Sydney is walkable and mostly free. That's invisible on current sites.</p></div>
+        <div class="card wht"><h3>Depth is a real demand</h3><p>64% of int'l visitors return; WTTC puts global tourism ~$315B. Repeaters want food, beaches, night life — not the same icons.</p></div>
+      </div>
+      <div style="display:grid;gap:12px">
+        <div class="card"><h3>The audience, in three groups</h3><ul><li><b>First-timers</b> — need icons fast, no 40-page guide</li><li><b>Return visitors</b> — need depth, curation, "what's new"</li><li><b>Locals</b> — need free, this-weekend, no-car plans</li></ul></div>
+        <div class="card"><h3>Common planning moments</h3><ul><li>"I have 4 hours and it's getting dark"</li><li>"What can we do that's free this Saturday?"</li></ul><p style="margin-top:8px;font-size:12.5px">→ the filters: <b>cost · duration · time · access</b></p></div>
+      </div>
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:12px">
+        <div class="stripbox"><img src="photos/bondi-beach.jpg" alt="Bondi Beach"><div class="cap">Bondi — beach culture, 20 min east</div></div>
+        <div class="stripbox"><img src="photos/botanic-garden.jpg" alt="Royal Botanic Garden" style="object-position:center 60%"><div class="cap">Botanic Garden — free, next to the Opera House</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S5 gap analysis -->
+  <section class="slide">
+    <div class="kicker">Benchmarking · sydney.com</div>
+    <h2>Where planning breaks down</h2>
+    <div style="margin-top:24px">
+      <div class="gaprow"><div class="g">Organised by destination (suburb) — “what can I do?” requires browsing geography</div><div class="f">Experience-first IA · geography demoted to a facet</div></div>
+      <div class="gaprow"><div class="g">No time-aware planning — nothing answers “I have 4 hours and it's getting dark”</div><div class="f">Duration + time-of-day filters · “best time” on every result</div></div>
+      <div class="gaprow"><div class="g">Free vs ticketed buried in article text · no itinerary building</div><div class="f">Cost badges (text) · “My Plan” itinerary with share link</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;height:225px;margin-top:26px">
+      <div class="stripbox"><img src="photos/bridge-skyline.jpg" alt="Bridge and CBD skyline" style="object-position:center 40%"><div class="cap">The CBD &amp; Bridge from Barangaroo — content to organise</div></div>
+      <div class="stripbox"><img src="photos/opera-bench.jpg" alt="Visitors at the Opera House" style="object-position:center 65%"><div class="cap">Visitors at the Opera House — experiences to plan around</div></div>
+    </div>
+  </section>
+
+  <!-- S6 concept -->
+  <section class="slide">
+    <div class="kicker">The concept</div>
+    <h2>Harbourline — plan by experience, not postcode</h2>
+    <div class="cols" style="grid-template-columns:1.1fr 1fr;margin-top:26px;align-items:stretch">
+      <div style="display:flex;flex-direction:column;justify-content:center;gap:16px">
+        <p style="font-size:19px;color:var(--ink);line-height:1.5">Harbourline answers the three questions Sydney visitors actually ask — <b>what can I do, when can I do it, what will it cost</b> — and turns the answers into a plan you can save, reorder and share.</p>
+        <div class="flow"><span class="fstep">Browse by experience</span><span class="farr">→</span><span class="fstep">Filter: cost · time · day</span><span class="farr">→</span><span class="fstep hot">My Plan</span></div>
+      </div>
+      <div style="display:grid;gap:12px">
+        <div class="card"><h3>Pillar 1 · Experience-first</h3><p>Content is organised by what you want to <b>do</b> (sailing, food, art, beaches) — geography becomes a filter.</p></div>
+        <div class="card"><h3>Pillar 2 · Constraint-aware</h3><p>Every experience carries <b>cost, duration, best time of day, access</b> — the four facts planning depends on.</p></div>
+        <div class="card"><h3>Pillar 3 · Plan &amp; share</h3><p>"My Plan" collects picks into a day; a <b>no-login share link</b> turns the plan into word-of-mouth.</p></div>
+      </div>
+    </div>
+    <div style="height:140px;margin-top:20px" class="stripbox">
+      <img src="photos/bridge-ops-night.jpg" alt="Harbour Bridge and Opera House at night" style="object-position:center 55%"><div class="cap">One harbour, many experiences — Harbourline organises by the <b>moment</b>, not the map.</div>
+    </div>
+  </section>
+
+  <!-- S7 personas -->
+  <section class="slide">
+    <div class="kicker">Personas · evidence-based</div>
+    <h2>Three planners, one shared trait</h2>
+    <div style="margin-top:12px">
+      <div class="persona">
+        <div class="who"><img class="ava" src="photos/bondi-beach.jpg" alt="Jenna, first-timer, at Bondi"><span class="nm">Jenna, 27</span><span class="rl">Melbourne designer · first solo trip · 2 nights, ~$1,200</span><span class="tag">Primary</span></div>
+        <div class="bd">Icons + good food, <b>costs visible</b>, planning on her phone between meetings. Can't tell what's free vs ticketed.</div>
+      </div>
+      <div class="persona">
+        <div class="who"><img class="ava" src="photos/bridge-ops-night.jpg" alt="David, returning visitor, at the harbour"><span class="nm">David, 41</span><span class="rl">Seattle PM · 4th visit, 10 nights, with partner</span><span class="tag alt">Secondary</span></div>
+        <div class="bd">Has seen the icons — wants <b>hidden beaches, local food, evening culture</b>; weather changes daily plans.</div>
+      </div>
+      <div class="persona">
+        <div class="who"><img class="ava" src="photos/botanic-garden.jpg" alt="Aisha, local, in the Botanic Garden"><span class="nm">Aisha, 34</span><span class="rl">Inner West teacher · planning a free family Saturday</span><span class="tag alt">Tertiary</span></div>
+        <div class="bd"><b>Free, this weekend, no car</b> — events are buried; nothing filters by cost + time together.</div>
+      </div>
+    </div>
+    <p class="sub" style="margin-top:10px;font-size:15px"><b style="color:var(--ink)">Shared insight:</b> time-poor, cost-aware, mobile-first planners who decide fast → <b style="color:var(--coral)">organise by experience &amp; constraints, not geography.</b></p>
+  </section>
+
+  <!-- S8 persona->decision matrix -->
+  <section class="slide">
+    <div class="kicker">Personas → design decisions</div>
+    <h2>Every feature has a reason</h2>
+    <div style="margin-top:30px">
+      <div class="mhead"><span>Persona</span><span>Key need</span><span>Harbourline's response</span></div>
+      <div class="mrow">
+        <div class="p" style="background:var(--coral)"><span class="nm">Jenna, 27</span><span class="rl">primary · first-timer</span></div>
+        <div class="need">Costs visible before committing; planning on mobile, mid-decision</div>
+        <div class="resp">Cost badges with text on every card · “+ Add to plan” inline · persistent plan strip / sticky mobile bar</div>
+      </div>
+      <div class="mrow">
+        <div class="p" style="background:var(--teal)"><span class="nm">David, 41</span><span class="rl">secondary · repeater</span></div>
+        <div class="need">Beyond the icons — depth, curation, evening options</div>
+        <div class="resp">“Go Deeper” curated layer · time-of-day facet (sunset / evening) · collection pages with stories</div>
+      </div>
+      <div class="mrow">
+        <div class="p" style="background:var(--harbour)"><span class="nm">Aisha, 34</span><span class="rl">tertiary · local</span></div>
+        <div class="need">Free, this weekend, no car — fast combined filters</div>
+        <div class="resp">Combined cost+duration+access facets (bottom sheet on mobile) · free events surfaced on home</div>
+      </div>
+    </div>
+        <div style="display:grid;grid-template-columns:1fr;height:130px;margin-top:2px">
+      <div class="stripbox"><img src="photos/bridge-ops-night.jpg" alt="Sydney harbour at night"><div class="cap">Traceability: every wireframe decision names the persona, need and response that forced it</div></div>
+    </div>
+    <p class="sub" style="margin-top:32px">The matrix is the rubric hook: zoom any wireframe and you can name the persona that forced the decision.</p>
+  </section>
+
+  <!-- S9 sitemap -->
+  <section class="slide">
+    <div class="kicker">Information architecture</div>
+    <h2>Shallow, experience-first sitemap</h2>
+    <div style="margin-top:36px">
+      <div style="text-align:center"><span class="chip" style="display:inline-block">Home <span class="lv" style="display:inline">L0</span></span></div>
+      <div class="conn"></div>
+      <div class="smwrap">
+        <div class="chip core"><span class="lv dark">L1 · core</span>Experiences</div>
+        <div class="chip core"><span class="lv dark">L1 · core</span>My Plan</div>
+        <div class="chip"><span class="lv">L1</span>Events</div>
+        <div class="chip"><span class="lv">L1</span>Go Deeper</div>
+        <div class="chip"><span class="lv">L1</span>About</div>
+      </div>
+      <div class="conn"></div>
+      <div class="lvlrow">
+        <span class="chip" style="border-color:#B9B0A0;font-weight:600;font-size:12.5px">Experience detail</span>
+        <span class="chip" style="border-color:#B9B0A0;font-weight:600;font-size:12.5px">Faceted results <i style="color:#9AA0AA">(area · cost · duration · time · access)</i></span>
+        <span class="chip" style="border-color:#B9B0A0;font-weight:600;font-size:12.5px">Day view</span>
+        <span class="chip" style="border-color:#B9B0A0;font-weight:600;font-size:12.5px">Share / export</span>
+        <span class="chip" style="border-color:#B9B0A0;font-weight:600;font-size:12.5px">Collection detail</span>
+        <span class="chip" style="border-color:#B9B0A0;font-weight:600;font-size:12.5px">Event detail</span>
+      </div>
+    </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px;height:140px">
+      <div class="stripbox"><img src="photos/ferry-boat.jpg" alt="Ferry across the harbour"><div class="cap">My Plan: the retention hook — planning becomes a shareable plan</div></div>
+      <div class="stripbox"><img src="photos/bondi-beach.jpg" alt="Bondi Beach"><div class="cap">Facets, not map branches: activity, time and budget first</div></div>
+      <div class="stripbox"><img src="photos/bridge-skyline.jpg" alt="Sydney skyline from the bridge"><div class="cap">Three levels deep, maximum — nothing hides behind a branch</div></div>
+    </div>
+    <p class="sub" style="margin-top:26px"><b style="color:var(--ink)">Three levels max.</b> Core paths are one tap from home; everything else is a detail or a facet result. Mobile uses bottom tabs for the three L1 destinations.</p>
+  </section>
+
+  <!-- S10 IA decisions -->
+  <section class="slide">
+    <div class="kicker">Information architecture · decisions</div>
+    <h2>Why it's shaped this way</h2>
+    <div class="cols" style="grid-template-columns:1fr 1fr 1fr;margin-top:28px;gap:14px">
+      <div class="card"><h3>Geography = facet</h3><p>Personas plan by activity &amp; time, not postcodes. Area is a filter chip inside results — visible, never a branch you must climb.</p></div>
+      <div class="card"><h3>“Go Deeper” for repeaters</h3><p>64% of int'l visitors return. A curated layer — collections, food, night culture — serves David without polluting the first-timer path.</p></div>
+      <div class="card"><h3>“My Plan” is primary</h3><p>The payoff page: planning becomes a plan. Saved, reorderable, shareable — and the site's retention engine.</p></div>
+    </div>
+    <p class="sub" style="margin-top:36px"><b style="color:var(--ink)">Primary user flow (Jenna, 2-hour day):</b></p>
+    <div class="flow" style="margin-top:32px">
+      <span class="fstep">Home → “Surprise me” chips</span><span class="farr">→</span>
+      <span class="fstep">Experiences · facets</span><span class="farr">→</span>
+      <span class="fstep">Detail · cost &amp; time confirmed</span><span class="farr">→</span>
+      <span class="fstep hot">+ Add to plan</span><span class="farr">→</span>
+      <span class="fstep">My Plan · reorder → Share link</span>
+    </div>
+    <div class="flow" style="margin-top:16px">
+      <span class="fstep">Home → “Go Deeper”</span><span class="farr">→</span>
+      <span class="fstep">Night culture · collections</span><span class="farr">→</span>
+      <span class="fstep">Detail · repeat context</span><span class="farr">→</span>
+      <span class="fstep hot">+ Add to plan (David)</span><span class="farr">→</span>
+      <span class="fstep">Share with a friend</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr;height:170px;margin-top:20px">
+      <div class="stripbox"><img src="photos/golden-hour-skyline.jpg" alt="Golden hour over Sydney harbour"><div class="cap">One question drives the whole IA: what do you want to do — and what can you spend?</div></div>
+    </div>
+  </section>
+
+  <!-- S11 moodboard -->
+  <section class="slide">
+    <div class="kicker">Visual design · ideation</div>
+    <h2>Annotated moodboard</h2>
+    <div class="cols" style="grid-template-columns:1.55fr 1fr;align-items:stretch;margin-top:16px">
+      <div class="figbox" style="height:515px">
+        <img src="../moodboard/moodboard.png" alt="Annotated moodboard" style="object-position:top center">
+        <div class="cap"><b>Full board:</b> palette · type · imagery · buttons · filters · icons · corners — every reference annotated.</div>
+      </div>
+      <div style="display:grid;gap:12px">
+        <div class="card"><h3>“Golden-hour harbour” palette</h3><p>Ink &amp; blue for structure · sand neutrals · <b>coral ≤10%</b> — the single accent for committed actions.</p></div>
+        <div class="card"><h3>Fraunces + Inter</h3><p>Serif display = heritage &amp; culture (guidebook feel) · Inter = fast, practical planning UI.</p></div>
+        <div class="card"><h3>Web-native references</h3><p>Colours, fonts, borders, iconography, imagery — annotated so a designer can execute without questions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S12 design system -->
+  <section class="slide">
+    <div class="kicker">Visual design · system</div>
+    <h2>The design system, executed</h2>
+    <div class="pal" style="margin-top:28px">
+      <div class="sw" style="background:#0B1F3A">Harbour Ink<span class="hex">#0B1F3A · structure, text</span></div>
+      <div class="sw" style="background:#1B5FA8">Harbour Blue<span class="hex">#1B5FA8 · links, primary UI</span></div>
+      <div class="sw" style="background:#2E8C8C">Bondi Teal<span class="hex">#2E8C8C · secondary accent</span></div>
+      <div class="sw" style="background:#FF6B4A">Sunrise Coral<span class="hex">#FF6B4A · committed actions ≤10%</span></div>
+      <div class="sw" style="background:#F4EDE3;color:#0B1F3A;border-color:#D9CFBC">Bondi Sand<span class="hex">#F4EDE3 · card &amp; section fills</span></div>
+    </div>
+    <div class="dsrow">
+      <div class="dscard">
+        <h4>Typography</h4>
+        <div class="dispf">Harbour, not postcode</div>
+        <div class="dispb">Fraunces for display — heritage feel. Inter for UI and body — fast and legible at 14px. Two families, fixed weights, 8px type rhythm.</div>
+      </div>
+      <div class="dscard">
+        <h4>Controls</h4>
+        <span class="btnpill">+ Add to plan</span><br>
+        <span class="chipsm on">Free</span><span class="chipsm">&lt; 2 h</span><span class="chipsm">Sunset</span><span class="chipsm">No car</span><br>
+        <span class="badge free">Free</span><span class="badge cost">From $45</span><span class="badge book">Book ahead</span>
+      </div>
+      <div class="dscard">
+        <h4>Iconography &amp; geometry</h4>
+        <div class="icons">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.2 2"/></svg>
+          <svg viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="13" rx="2.5"/><path d="M3.5 10h17M8 3.5v4M16 3.5v4"/></svg>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg>
+          <svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.6"/><circle cx="17.5" cy="5.5" r="2.6"/><circle cx="17.5" cy="18.5" r="2.6"/><path d="M8.4 10.8 15 6.6M8.4 13.2 15 17.4"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="radii">
+          <div class="rbox" style="width:34px;height:34px;border-radius:8px">8</div>
+          <div class="rbox" style="width:34px;height:34px;border-radius:10px">10</div>
+          <div class="rbox" style="width:34px;height:34px;border-radius:17px">999</div>
+          <div style="font-size:11px;color:var(--grey);line-height:1.5">chips · cards · buttons<br>12-col grid · 24px gutter · 8px rhythm</div>
+        </div>
+      </div>
+    </div>
+        <div style="display:grid;grid-template-columns:1fr;height:140px;margin-top:2px">
+      <div class="stripbox"><img src="photos/bridge-daytime.jpg" alt="Sydney by day"><div class="cap">One system, every surface: moodboard, wireframes and deck share the same tokens</div></div>
+    </div>
+    <p class="sub" style="margin-top:28px">Same tokens render the moodboard, wireframes and this deck — contrast checked to <b style="color:var(--ink)">WCAG AA</b>, coral reserved for the committed action.</p>
+  </section>
+
+  <!-- S13 sketches -->
+  <section class="slide">
+    <div class="kicker">Ideation · concept exploration</div>
+    <h2>Three directions, one winner</h2>
+    <div style="margin-top:14px;height:492px" class="figbox">
+      <img src="../sketches/sketches.png" alt="Annotated concept sketches V1-V3" style="object-position:top center">
+      <div class="cap"><b>V1 destination-first</b> (discarded: personas don't think in postcodes) → <b>V2 experience-first</b> (hero pushed filters below the fold on mobile) → <b>V3 final</b>: controls &amp; results before persuasion.</div>
+    </div>
+    <p class="sub" style="margin-top:18px">Each sketch is annotated: <b style="color:var(--ink)">what it tested · what changed · why it was kept, combined or discarded · how it responds to user needs.</b></p>
+  </section>
+
+  <!-- S14 pivotal decision -->
+  <section class="slide">
+    <div class="kicker">Depth · pivotal decision</div>
+    <h2>Zoom: the plan, always one tap away</h2>
+    <div class="cols" style="grid-template-columns:1.5fr 1fr;align-items:stretch;margin-top:14px">
+      <div class="figbox" style="height:525px">
+        <img src="../wireframes/wireframes-desktop-top.png" alt="Desktop home and listing wireframes" style="object-position:top left">
+        <div class="cap"><b>Pivotal decision:</b> every card carries “+ Add to plan”, backed by a persistent plan strip — Jenna commits without leaving the screen.</div>
+      </div>
+      <div style="display:grid;gap:12px">
+        <div class="card"><h3>Hierarchy rule</h3><p><b>Controls &amp; results before persuasion.</b> Hero demoted to a slim banner; chips — Free · &lt;2h · Sunset — sit first (cost &amp; time were the top persona constraints).</p></div>
+        <div class="card"><h3>Persona → decision</h3><p>Jenna: phone, mid-decision, budget-minded → the add-to-plan action + sticky plan strip is the heart of the concept.</p></div>
+        <div class="card"><h3>Mobile echo</h3><p>Same strip becomes a sticky bar above the bottom tab bar — the plan is always one tap away.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S15 desktop wireframes -->
+  <section class="slide">
+    <div class="kicker">Wireframes · desktop</div>
+    <h2>Annotated desktop set — 1440</h2>
+    <div style="margin-top:14px;height:510px" class="figbox">
+      <img src="../wireframes/wireframes-desktop.png" alt="Desktop wireframes board" style="object-position:top center">
+      <div class="cap"><b>Three screens:</b> home (chips + featured) · faceted listing (filters left, cost/time rows right) · My Plan (drag-reorder days, share, export).</div>
+    </div>
+    <p class="sub" style="margin-top:18px">Pinned annotations explain each pattern: facet rail, cost badge with text, plan strip, drag-to-reorder, share CTA as the single coral action.</p>
+  </section>
+
+  <!-- S16 mobile wireframes -->
+  <section class="slide">
+    <div class="kicker">Wireframes · mobile</div>
+    <h2>Annotated mobile set — 375</h2>
+    <div style="margin-top:14px;height:510px" class="figbox">
+      <img src="../wireframes/wireframes-mobile.png" alt="Mobile wireframes board" style="object-position:top center">
+      <div class="cap"><b>Mobile-first, as primary device:</b> bottom-tab IA · sticky plan strip above tabs · filters as a bottom sheet · share-first footer.</div>
+    </div>
+    <p class="sub" style="margin-top:18px">44px touch targets, one-thumb reach, bottom sheet instead of side rail — every annotation maps back to the same design tokens.</p>
+  </section>
+
+  <!-- S17 retention + differentiation -->
+  <section class="slide">
+    <div class="kicker">Strategy · retention &amp; differentiation</div>
+    <h2>Why people come back</h2>
+    <div class="cols" style="margin-top:34px;gap:30px">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <p style="font-size:15px;font-weight:800;color:var(--ink);letter-spacing:.02em">THE SHARE LOOP</p>
+        <div class="loopnode">Plan a day in “My Plan”<span class="sm">picks auto-grouped by time</span></div>
+        <div class="loopnode">Share a link — no login<span class="sm">friend opens the plan in one tap</span></div>
+        <div class="loopnode">Friend edits &amp; re-shares<span class="sm">collaboration without accounts</span></div>
+        <div class="loopnode hot">Word-of-mouth acquisition<span class="sm">each shared plan = a new visitor</span></div>
+      </div>
+      <div>
+        <div class="difftab">
+          <div class="dh">sydney.com today</div><div class="dh">Harbourline</div>
+          <div class="dc old">Browse by suburb / destination</div><div class="dc new">Browse by experience &amp; activity</div>
+          <div class="dc old">No cost/duration/time signals</div><div class="dc new">Cost, duration, best-time on every result</div>
+          <div class="dc old">Read articles, plan in your head</div><div class="dc new">Persistent “My Plan” you can save &amp; reorder</div>
+          <div class="dc old">Session ends when the tab does</div><div class="dc new">Login-free share link keeps the plan alive</div>
+        </div>
+                <div style="display:grid;grid-template-columns:1fr;height:130px;margin-top:2px">
+          <div class="stripbox"><img src="photos/bridge-ops-night.jpg" alt="Sydney harbour at night"><div class="cap">The metric: share-link opens per plan — word of mouth, built into the architecture</div></div>
+        </div>
+        <p class="sub" style="font-size:14px;margin-top:20px">The site's metric that matters: <b style="color:var(--ink)">share-link opens per plan</b> — a word-of-mouth channel the benchmark has no equivalent of.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- S18 evaluation -->
+  <section class="slide">
+    <div class="kicker">Self-evaluation · constraints &amp; next steps</div>
+    <h2>What I'd do next</h2>
+    <div class="cols" style="grid-template-columns:1fr 1fr 1fr;margin-top:26px;gap:14px">
+      <div class="card"><h3>Built-in quality</h3><ul><li>WCAG AA contrast throughout</li><li>Badges carry text, never colour alone</li><li>44px targets, keyboard-reachable</li><li>Two font families, 8px rhythm</li></ul></div>
+      <div class="card"><h3>Constraints of this proposal</h3><ul><li>Static wireframes — no live data yet</li><li>Photos are licensed stock, not site assets</li><li>Personas are research-informed, not user-tested</li></ul></div>
+      <div class="card"><h3>Next steps</h3><ul><li>Task-based testing with 5 users (Jenna flow)</li><li>Content model for CMS: cost/time/access fields</li><li>A/B hero vs controls-first layout</li></ul></div>
+    </div>
+        <div style="display:grid;grid-template-columns:1fr;height:130px;margin-top:2px">
+      <div class="stripbox"><img src="photos/bridge-skyline.jpg" alt="Sydney skyline"><div class="cap">Next: five-person usability pass on the facet rail — the first thing I would test</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:14px;margin-top:24px;align-items:center">
+      <div class="stripbox" style="height:175px"><img src="photos/ferry-boat.jpg" alt="Ferry across the harbour" style="object-position:center 60%"><div class="cap">Free ferry — the trip that started this</div></div>
+      <p class="sub"><b style="color:var(--ink)">Honest reflection:</b> the riskiest assumption is that visitors will trade the familiar map-based browsing for facets — the share loop and "Go Deeper" curation are my answer if that trade slows adoption.</p>
+    </div>
+  </section>
+
+  <!-- S19 closing -->
+  <section class="slide close">
+    <div class="photo" style="background-image:url('photos/golden-hour-skyline.jpg')"><div class="scrim" style="background:linear-gradient(100deg, rgba(11,31,58,.94) 0%, rgba(11,31,58,.80) 40%, rgba(11,31,58,.35) 100%)"></div></div>
+    <div style="position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;gap:20px">
+      <div class="kicker" style="color:#FF8A6B">Closing</div>
+      <div class="big">It plans by how you want to <em>spend your time</em>,<br>not by where you're standing.</div>
+      <p class="sub" style="color:#E4EAF2;max-width:820px">Every artefact — the experience-first IA, the cost &amp; time facets, the persistent plan, the mobile-first layout — traces back to the research and the three personas.<br><br>Thank you — happy to take questions.</p>
+    </div>
+  </section>
+
+</div></div>
+
+<div id="nav"></div>
+<div class="hint">←/→ or space · N = notes · F = fullscreen</div>
+<div id="notes"></div>
+
+<script>
+const notes = [
+  "Hi, I'm Nuo Yan Li. My proposal is Harbourline — a Sydney tourism site that plans by activity, time and budget, not by suburb. Here's what I'll show.",
+  "The arc: research and benchmarking, the concept, personas, information architecture, visual design, then sketches and wireframes. Every later decision traces back to the earlier evidence.",
+  "Market first: 63.6M domestic visitors and $20.8B (Destination NSW); 8.9M international arrivals with a record $192B total spend (TRA 2025); 64% of international visitors are repeaters.",
+  "Place insights: Sydney is a harbour, not a grid — ferries and walking matter. Free is a real superpower (ferry, botanic garden, beaches). And the three audience groups ask the same three questions: what, when, how much.",
+  "Benchmarking sydney.com: organised by suburb, no time-aware planning, free vs ticketed buried in text, no itinerary building. These are exactly the moments where planning fails.",
+  "The concept: Harbourline answers what / when / how much, and turns answers into a plan. Three pillars: experience-first, constraint-aware, plan and share.",
+  "Three personas: Jenna (27, first-timer, budget, phone), David (41, 4th visit, wants depth), Aisha (34, local, free weekend, no car). Shared trait: time-poor, cost-aware, mobile-first, decide fast.",
+  "This matrix is the heart of the evidence chain: Jenna forces cost badges and the add-to-plan strip; David forces Go Deeper and time-of-day facets; Aisha forces combined cost-plus-duration filters in a mobile sheet.",
+  "Sitemap: shallow — three levels max. Experiences, My Plan, Events, Go Deeper, About. Geography is a facet, not a branch. Mobile uses bottom tabs.",
+  "IA decisions: Go Deeper serves the 64% repeaters; My Plan is primary because it's the payoff. The primary flow is one continuous line from a home chip to a shared plan.",
+  "Moodboard: golden-hour harbour palette — ink/blue structure, sand neutrals, coral under 10% for committed actions. Fraunces for heritage feel, Inter for practical UI. Every reference annotated.",
+  "The design system is fully executed: five tokens, two type families, coral-only buttons, text-bearing cost badges, 1.8px line icons, 8/10/999 radii, 12-column grid — the same tokens render the wireframes.",
+  "Three sketch directions: V1 destination-first — discarded, personas don't think in postcodes. V2 experience-first — but the hero pushed filters below the fold on mobile. V3 final: controls and results before persuasion.",
+  "Zoom on the pivotal decision: every card has + Add to plan, with a persistent plan strip. Driven by Jenna — phone, mid-decision, she must commit without leaving the screen.",
+  "Breadth, desktop: home, faceted listing, and My Plan at 1440 — pinned annotations explain every pattern, including drag-to-reorder and the coral share CTA.",
+  "Breadth, mobile: 375 as the primary device — bottom tabs, sticky plan strip, bottom-sheet filters, 44px targets, one-thumb reach.",
+  "Retention: the share loop — plan, share a login-free link, friend edits and re-shares. Each shared plan is a new visitor. The differentiation table is why a user would switch.",
+  "Self-evaluation: AA contrast, text badges, keyboard access. Constraints: static mock, stock photos, untested personas. Next: five-user task testing, a CMS content model, A/B the layout.",
+  "To close: Harbourline plans by how you want to spend your time, not by where you're standing. Everything traces back to research and personas. Thank you — questions welcome."
+];
+const slides = [...document.querySelectorAll('.slide')];
+let i = 0;
+const notesEl = document.getElementById('notes');
+const navEl = document.getElementById('nav');
+function go(n){
+  i = Math.max(0, Math.min(slides.length-1, n));
+  slides.forEach((s,k)=>s.classList.toggle('active', k===i));
+  notesEl.textContent = notes[i] || '';
+  navEl.innerHTML = `<b>${i+1}</b> / ${slides.length}`;
+}
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(i+1);}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(i-1);}
+  else if(e.key==='Home') go(0);
+  else if(e.key==='End') go(slides.length-1);
+  else if(e.key.toLowerCase()==='n') notesEl.classList.toggle('show');
+  else if(e.key.toLowerCase()==='f'){ document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen(); }
+});
+document.getElementById('stage').addEventListener('click', e=>{ if(e.clientX > window.innerWidth*0.5) go(i+1); else go(i-1); });
+function fit(){
+  const s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+  document.getElementById('deck').style.transform = `scale(${s})`;
+}
+window.addEventListener('resize', fit);
+fit(); go(0);
+</script>
+</body>
+</html>

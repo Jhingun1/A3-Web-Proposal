@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbourline — Annotated Wireframes (Desktop)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#0B1F3A; --grey:#9AA0AA; --lgrey:#C7CBD3; --paper:#F4F6F9; --blue:#1B5FA8; --coral:#FF6B4A; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#DFE3EA;font-family:Inter,system-ui,sans-serif}
+  .board{width:2560px;padding:48px 52px 60px;background:var(--paper)}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid var(--ink);padding-bottom:16px;margin-bottom:34px}
+  .head h1{font-size:42px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+  .head .sub{font-size:14px;color:#51565F;max-width:640px;line-height:1.5;margin-top:8px}
+  .head .tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--blue);border:1.5px solid var(--blue);border-radius:99px;padding:7px 14px;white-space:nowrap}
+  .page{background:#fff;border:2px solid var(--ink);border-radius:12px;position:relative;overflow:hidden}
+  .wlabel{font-family:Caveat,cursive;font-size:30px;color:var(--ink);margin:26px 0 10px}
+  .wlabel span{font-family:Inter,sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#51565F;border:1.5px solid var(--grey);border-radius:99px;padding:4px 10px;vertical-align:6px;margin-left:10px}
+  /* wireframe primitives */
+  .wbar{height:56px;display:flex;align-items:center;gap:14px;padding:0 22px;border-bottom:2px solid var(--ink);background:#fff}
+  .wlogo{width:110px;height:24px;background:var(--ink);border-radius:4px}
+  .wnav{display:flex;gap:22px;margin-left:26px}
+  .wnav i{font-style:normal;font-size:12.5px;font-weight:600;color:#41454D}
+  .wplan{margin-left:auto;display:flex;align-items:center;gap:8px;border:2px solid var(--ink);border-radius:99px;padding:5px 14px;font-size:12.5px;font-weight:700}
+  .wplan .dot{width:22px;height:22px;border-radius:50%;background:var(--coral);color:#fff;font-size:11px;display:grid;place-items:center}
+  .whero{position:relative;height:300px;margin:18px 22px;border:2px solid var(--grey);border-radius:10px;background:
+    linear-gradient(180deg,transparent 55%,rgba(11,31,58,.55) 100%),
+    repeating-linear-gradient(45deg,#F2F4F7 0 12px,#E9ECF1 12px 24px)}
+  .whero .hl{position:absolute;left:26px;bottom:26px;color:var(--ink)}
+  .whero .hl h2{font-size:30px;font-weight:700}
+  .whero .hl p{font-size:13px;margin-top:6px}
+  .wsearch{position:absolute;right:26px;bottom:26px;width:300px;height:44px;border:2px solid var(--ink);border-radius:99px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 16px;font-size:12.5px;color:#6A6F78}
+  .wsearch .btn{margin-left:auto;background:var(--coral);color:#fff;border-radius:99px;padding:7px 14px;font-weight:700;font-size:12.5px}
+  .wfilters{position:relative;display:flex;align-items:center;gap:10px;margin:14px 22px 10px}
+  .wfilters .fl{font-size:11px;font-weight:700;letter-spacing:.08em;color:#51565F}
+  .wchip{border:1.5px solid var(--grey);border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600;color:#41454D;background:#fff}
+  .wchip.on{border-color:var(--ink);background:var(--ink);color:#fff}
+  .wgrid{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:10px 22px 18px}
+  .wcard{border:2px solid var(--lgrey);border-radius:10px;overflow:hidden;background:#fff}
+  .wcard .wimg{height:110px;background:repeating-linear-gradient(45deg,#F2F4F7 0 10px,#E9ECF1 10px 20px);border-bottom:2px solid var(--lgrey);position:relative}
+  .wcard .wimg .badge{position:absolute;top:8px;left:8px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:99px;background:#fff;border:1.5px solid var(--ink)}
+  .wcard .wimg .badge.free{background:#2E8C8C;color:#fff;border-color:#2E8C8C}
+  .wcard .wd{padding:9px 11px;font-size:12px;font-weight:600;color:#22262C;line-height:1.4}
+  .wcard .wm{font-size:10.5px;color:#6A6F78;margin-top:4px;font-weight:500}
+  .wcard .wadd{margin:8px 11px 11px;border:1.5px solid var(--ink);border-radius:99px;padding:5px 0;text-align:center;font-size:11.5px;font-weight:700}
+  .wstrip{position:relative;margin:6px 22px 22px;border:2px dashed var(--ink);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:14px;background:#FBFCFE}
+  .wstrip .st{font-size:13px;font-weight:700;color:var(--ink)}
+  .wstrip .stops{display:flex;gap:8px;margin-left:10px}
+  .wstrip .stop{width:74px;height:44px;border:1.5px solid var(--grey);border-radius:8px;background:#fff;font-size:10px;color:#6A6F78;display:grid;place-items:center;text-align:center;line-height:1.25}
+  .wstrip .add{margin-left:auto;border:2px solid var(--coral);color:var(--coral);border-radius:99px;padding:6px 16px;font-size:12.5px;font-weight:700}
+  /* listing */
+  .lhead{padding:20px 22px 8px}
+  .lhead h2{font-size:24px;font-weight:700;color:var(--ink)}
+  .lhead p{font-size:12.5px;color:#6A6F78;margin-top:4px}
+  .lbody{display:grid;grid-template-columns:230px 1fr;gap:18px;margin:14px 22px 22px}
+  .aside{position:relative;border:2px solid var(--lgrey);border-radius:10px;padding:14px;background:#FBFCFE}
+  .aside h4{font-size:12px;font-weight:700;color:var(--ink);margin:12px 0 8px}
+  .aside h4:first-child{margin-top:0}
+  .opt{display:flex;align-items:center;gap:8px;font-size:12px;color:#41454D;margin-bottom:7px;font-weight:500}
+  .opt .cb{width:14px;height:14px;border:1.5px solid var(--grey);border-radius:3px;background:#fff}
+  .opt .cb.on{background:var(--ink);border-color:var(--ink)}
+  .rangeline{height:4px;border-radius:2px;background:var(--lgrey);margin:14px 4px 6px;position:relative}
+  .rangeline .fill{position:absolute;left:0;top:0;bottom:0;width:60%;background:var(--blue);border-radius:2px}
+  .rangeline .kn{position:absolute;top:-6px;width:16px;height:16px;border-radius:50%;background:#fff;border:2px solid var(--blue);right:34%}
+  .results{position:relative;display:grid;gap:12px}
+  .rrow{border:2px solid var(--lgrey);border-radius:10px;padding:12px 14px;display:flex;gap:14px;align-items:center;background:#fff}
+  .rrow .rimg{width:120px;height:80px;border-radius:8px;background:repeating-linear-gradient(45deg,#F2F4F7 0 10px,#E9ECF1 10px 20px);flex:none}
+  .rrow .rt{font-size:14px;font-weight:700;color:var(--ink)}
+  .rrow .rm{font-size:11.5px;color:#6A6F78;margin-top:4px;line-height:1.5}
+  .rrow .ra{margin-left:auto;display:flex;flex-direction:column;gap:7px;align-items:flex-end;flex:none}
+  .rrow .ra .b1{background:var(--coral);color:#fff;border-radius:99px;padding:6px 16px;font-size:12px;font-weight:700}
+  .rrow .ra .b2{border:1.5px solid var(--grey);border-radius:99px;padding:5px 14px;font-size:11.5px;font-weight:600;color:#41454D}
+  /* plan */
+  .pdays{position:relative;display:flex;gap:12px;padding:20px 22px 6px}
+  .pd{border:2px solid var(--lgrey);border-radius:99px;padding:8px 18px;font-size:13px;font-weight:700;color:#41454D;background:#fff}
+  .pd.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .ptimeline{margin:16px 22px 22px;display:grid;grid-template-columns:220px 1fr;gap:20px}
+  .ptoday{position:relative;border:2px solid var(--lgrey);border-radius:10px;padding:14px;background:#FBFCFE}
+  .ptoday .row{display:flex;justify-content:space-between;font-size:12px;color:#41454D;margin-bottom:8px;font-weight:600}
+  .ptoday .bar{height:6px;border-radius:3px;background:var(--lgrey);margin-bottom:14px;position:relative}
+  .ptoday .bar .f{position:absolute;left:0;top:0;bottom:0;background:var(--blue);border-radius:3px}
+  .pitems{position:relative;display:grid;gap:12px;align-content:start}
+  .pitem{border:2px solid var(--lgrey);border-radius:10px;padding:12px 14px;display:flex;gap:14px;align-items:center;background:#fff;position:relative}
+  .pitem .t{width:70px;font-size:12px;font-weight:700;color:var(--blue);flex:none}
+  .pitem .n{font-size:13.5px;font-weight:600;color:var(--ink)}
+  .pitem .m{font-size:11px;color:#6A6F78;margin-top:3px}
+  .pitem .g{margin-left:auto;display:flex;gap:8px;align-items:center}
+  .pitem .g .ic{width:32px;height:32px;border:1.5px solid var(--grey);border-radius:8px;display:grid;place-items:center;font-size:13px;color:#6A6F78}
+  .pitem .g .share{background:var(--ink);color:#fff;border-radius:99px;padding:7px 16px;font-size:12px;font-weight:700}
+  .pitem .grip{position:absolute;left:-2px;top:50%;transform:translate(-50%,-50%);width:18px;height:34px;border:1.5px solid var(--grey);border-radius:6px;background:#fff;font-size:10px;display:grid;place-items:center;color:#9AA0AA}
+  /* annotations */
+  .a{font-size:12.5px;line-height:1.45;color:#2B2A27;background:#FFF6E8;border:1.5px solid #E8B84B;border-radius:10px;padding:9px 11px;max-width:250px;box-shadow:3px 4px 0 rgba(11,31,58,.06)}
+  .a b{color:#9A6B00;display:block;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:3px}
+  .a .num{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#E8B84B;color:#5A3E00;font-weight:700;font-size:10.5px;margin-right:5px;vertical-align:-3px}
+  .pin{position:absolute;width:22px;height:22px;border-radius:50%;background:#E8B84B;color:#5A3E00;font-size:11px;font-weight:700;display:grid;place-items:center;border:1.5px solid #B58A1F;box-shadow:0 2px 5px rgba(0,0,0,.3);z-index:6}
+  .aconn{position:absolute;background:transparent;z-index:5}
+  .legend{margin-top:30px;font-size:12.5px;color:#51565F;display:flex;gap:20px;flex-wrap:wrap;align-items:center}
+  .legend .k{display:flex;gap:7px;align-items:center}
+  .legend .sw{width:18px;height:12px;border-radius:3px;border:1.5px solid var(--grey);background:#fff}
+</style>
+</head>
+<body>
+<div class="board">
+  <div class="head">
+    <div>
+      <h1>Harbourline — Annotated Wireframes</h1>
+      <div class="sub">Desktop (1440px) structure for the three core pages. Grey = placeholder media/neutral; dark = primary UI; coral = the single committed action. Numbered pins map to annotations on the right of each page.</div>
+    </div>
+    <div class="tag">Lo-fi wireframes · desktop 1440</div>
+  </div>
+
+  <!-- ============ HOME ============ -->
+  <div class="wlabel">Page 1 — Home <span>landing / discovery</span></div>
+  <div style="display:grid;grid-template-columns:1440px 1fr;gap:34px;align-items:start">
+    <div class="page">
+      <div class="wbar">
+        <div class="wlogo"></div>
+        <div class="wnav"><i>Experiences</i><i>Events</i><i>Go deeper</i><i>About</i></div>
+        <div class="wplan">My plan <span class="dot">2</span></div>
+        <span class="pin" style="left:120px;top:12px">1</span>
+        <span class="pin" style="right:120px;top:12px">2</span>
+      </div>
+      <div class="whero">
+        <div class="hl"><h2>See Sydney your way</h2><p>Plan by activity, time of day and budget — not by suburb.</p></div>
+        <div class="wsearch">Free · under 2 hours · this evening… <span class="btn">Search</span></div>
+        <span class="pin" style="left:26px;bottom:26px">3</span>
+        <span class="pin" style="right:340px;bottom:58px">4</span>
+      </div>
+      <div class="wfilters">
+        <span class="fl">FILTER</span>
+        <span class="wchip on">All</span><span class="wchip">Free</span><span class="wchip">&lt; 2h</span><span class="wchip">Sunset</span><span class="wchip">Family</span><span class="wchip">Harbour</span><span class="wchip">Heritage</span>
+        <span class="pin" style="left:700px;top:4px">5</span>
+      </div>
+      <div class="wgrid">
+        <div class="wcard"><div class="wimg"><span class="badge free">FREE</span></div><div class="wd">Manly ferry — scenic harbour crossing</div><div class="wm">20 min · Harbour · Op $0</div><div class="wadd">+ Add to plan</div></div>
+        <div class="wcard"><div class="wimg"><span class="badge">TICKETED</span></div><div class="wd">Harbour Bridge walk & tunnels tour</div><div class="wm">1.5 h · CBD · from $42</div><div class="wadd">+ Add to plan</div></div>
+        <div class="wcard"><div class="wimg"><span class="badge free">FREE</span></div><div class="wd">The Rocks — heritage precinct stroll</div><div class="wm">1 h · CBD · Free</div><div class="wadd">+ Add to plan</div></div>
+        <div class="wcard"><div class="wimg"><span class="badge">TICKETED</span></div><div class="wd">Opera House tour (UNESCO)</div><div class="wm">1.5 h · Circular Quay · $42</div><div class="wadd">+ Add to plan</div></div>
+        <div class="wcard"><div class="wimg"><span class="badge free">FREE</span></div><div class="wd">Bondi to Coogee coastal walk</div><div class="wm">2 h · Eastern · Free</div><div class="wadd">+ Add to plan</div></div>
+        <div class="wcard"><div class="wimg"><span class="badge">TICKETED</span></div><div class="wd">Ferry + beach day: Manly</div><div class="wm">3 h · Harbour · $7.30</div><div class="wadd">+ Add to plan</div></div>
+        <div class="wcard"><div class="wimg"><span class="badge free">FREE</span></div><div class="wd">The Royal Botanic Garden</div><div class="wm">1–2 h · CBD · Free</div><div class="wadd">+ Add to plan</div></div>
+        <div class="wcard"><div class="wimg"><span class="badge">TICKETED</span></div><div class="wd">Harbour Bridge climb (day/twilight)</div><div class="wm">3 h · CBD · from $188</div><div class="wadd">+ Add to plan</div></div>
+        <span class="pin" style="left:180px;top:270px">6</span>
+        <span class="pin" style="left:1290px;top:270px">7</span>
+      </div>
+      <div class="wstrip">
+        <span class="st">My plan · Day 1</span>
+        <div class="stops"><span class="stop">09:30 Bridge walk</span><span class="stop">12:00 Rocks stroll</span><span class="stop">15:30 Ferry → Manly</span></div>
+        <span class="add">+ Add stop</span>
+        <span class="pin" style="left:560px;top:-10px">8</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="a"><span class="num">1</span><b>Nav: IA at a glance</b>4 items max — Experiences (core), Events, Go deeper (curated, for returning visitors), About. Geography is a filter, not a nav item: the persona research showed users think in activities, not postcodes.</div>
+      <div class="a"><span class="num">2</span><b>“My plan (2)”</b>The itinerary counter is always visible — visible progress is the core value of the concept. Coral dot = live count; clicking opens the plan page/drawer.</div>
+      <div class="a"><span class="num">3</span><b>Hero demoted</b>One line of promise, no full-bleed persuasion (decision from sketch V2→V3: controls & results before persuasion). Image carries mood; text sits on the dark lower band for ≥4.5:1 contrast.</div>
+      <div class="a"><span class="num">4</span><b>Inline search</b>Free-text planning query (“free, under 2h, evening”) — maps to the same filter state, so search and chips stay in sync. Primary CTA in coral: the only hot element in the viewport.</div>
+      <div class="a"><span class="num">5</span><b>Filter chips = the product</b>Cost (Free) and time (&lt;2h) are the first two chips because 2 of 3 personas are cost/time-constrained. Multi-select; “Area” chip expands to geographic browse (keeps V1 power for place-browsers).</div>
+      <div class="a"><span class="num">6</span><b>Result cards</b>Fixed 4:1 media, name, one meta line (duration · area · cost), single action. Free/ticketed badge carries TEXT, not colour alone (accessibility, colour-blind safe). Uniform card size = scannable comparison.</div>
+      <div class="a"><span class="num">7</span><b>“+ Add to plan”</b>Consistent, low-cost commitment action on every card — the bridge from discovery to itinerary. Toggled state (✓ Added) gives instant feedback; 44px min height for touch on mobile.</div>
+      <div class="a"><span class="num">8</span><b>Plan strip (persistent)</b>Shows current day’s stops as chips so users never lose their progress while browsing. Dashed border = “your content, in flux”. Collapses to a bottom bar on mobile.</div>
+    </div>
+  </div>
+
+  <!-- ============ LISTING ============ -->
+  <div class="wlabel">Page 2 — Experiences (filtered listing) <span>the workhorse page</span></div>
+  <div style="display:grid;grid-template-columns:1440px 1fr;gap:34px;align-items:start">
+    <div class="page">
+      <div class="wbar">
+        <div class="wlogo"></div>
+        <div class="wnav"><i>Experiences</i><i>Events</i><i>Go deeper</i><i>About</i></div>
+        <div class="wplan">My plan <span class="dot">2</span></div>
+      </div>
+      <div class="lhead"><h2>Free things to do in the Harbour area</h2><p>14 experiences · sorted by best time of day · updated weekly</p></div>
+      <div class="wfilters" style="margin-bottom:0">
+        <span class="fl">REFINE</span>
+        <span class="wchip on">Free</span><span class="wchip on">Harbour</span><span class="wchip">&lt; 2h</span><span class="wchip">Sunset</span><span class="wchip">Family</span>
+        <span class="pin" style="left:560px;top:4px">9</span>
+      </div>
+      <div class="lbody">
+        <div class="aside">
+          <h4>DURATION</h4>
+          <div class="rangeline"><span class="fill"></span><span class="kn"></span></div>
+          <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#6A6F78"><span>Any</span><span>≤ 2 h ✓</span><span>Full day</span></div>
+          <h4>TIME OF DAY</h4>
+          <div class="opt"><span class="cb"></span> Morning</div>
+          <div class="opt"><span class="cb on"></span> Afternoon</div>
+          <div class="opt"><span class="cb on"></span> Golden hour / evening</div>
+          <h4>AREA</h4>
+          <div class="opt"><span class="cb on"></span> Harbour & CBD</div>
+          <div class="opt"><span class="cb"></span> Eastern beaches</div>
+          <div class="opt"><span class="cb"></span> North Shore</div>
+          <div class="opt"><span class="cb"></span> Manly</div>
+          <h4>ACCESS</h4>
+          <div class="opt"><span class="cb"></span> Wheelchair accessible</div>
+          <div class="opt"><span class="cb"></span> Family friendly</div>
+          <span class="pin" style="left:8px;top:230px">10</span>
+        </div>
+        <div class="results">
+          <div class="rrow"><div class="rimg"></div><div><div class="rt">Manly ferry — scenic harbour crossing</div><div class="rm">Free · 20 min each way · best at sunset · Circular Quay Pier 2 → Manly Wharf · Oysterver Rd views of both icons</div></div><div class="ra"><span class="b1">+ Add to plan</span><span class="b2">Details</span></div></div>
+          <div class="rrow"><div class="rimg"></div><div><div class="rt">The Rocks — heritage precinct</div><div class="rm">Free · 1–2 h · best morning · 15 min walk from Circular Quay · Sydney’s oldest colonial quarter</div></div><div class="ra"><span class="b1">+ Add to plan</span><span class="b2">Details</span></div></div>
+          <div class="rrow"><div class="rimg"></div><div><div class="rt">Royal Botanic Garden</div><div class="rm">Free · 1–2 h · any time · 5 min from Opera House · lawns, picnic spots, harbour views</div></div><div class="ra"><span class="b1">+ Add to plan</span><span class="b2">Details</span></div></div>
+          <div class="rrow"><div class="rimg"></div><div><div class="rt">Sydney Tower observation deck (discounted)</div><div class="rm">Ticketed from $26 · 45 min · golden hour · 360° views · often included in day passes</div></div><div class="ra"><span class="b1">+ Add to plan</span><span class="b2">Details</span></div></div>
+          <span class="pin" style="left:400px;top:150px">11</span>
+          <span class="pin" style="left:1050px;top:60px">12</span>
+        </div>
+      </div>
+      <span class="pin" style="left:1290px;bottom:26px">13</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="a"><span class="num">9</span><b>Refine chips stay in sync</b>Same chip system as home — state is shared, so the filter language never changes page to page. Active chips render inverted (ink fill) = unambiguous selected state.</div>
+      <div class="a"><span class="num">10</span><b>Faceted sidebar</b>Duration (range), time-of-day, area, access. “Best at sunset” style time awareness answers the #1 research gap: current sites are not time-aware. Sidebar hidden → slide-over on mobile (bottom sheet on touch).</div>
+      <div class="a"><span class="num">11</span><b>Result rows, not cards</b>On a listing page users compare many items; a row with one meta line per item scans faster than a card grid. Meta line order = decision order: cost → duration → best time → location → one detail.</div>
+      <div class="a"><span class="num">12</span><b>Two actions, clear priority</b>Primary “+ Add to plan” (coral) vs. secondary “Details” (ghost). No third CTA — every item should be addable, so the plan is the goal, not the article.</div>
+      <div class="a"><span class="num">13</span><b>Infinite scroll + “load older” fallback</b>14 items render in ~3 rows on desktop; results paginate by scroll to keep momentum, with a keyboard-accessible “Load more” button (scroll-only traps keyboard users).</div>
+    </div>
+  </div>
+
+  <!-- ============ PLAN ============ -->
+  <div class="wlabel">Page 3 — My plan (itinerary) <span>commit & share</span></div>
+  <div style="display:grid;grid-template-columns:1440px 1fr;gap:34px;align-items:start">
+    <div class="page">
+      <div class="wbar">
+        <div class="wlogo"></div>
+        <div class="wnav"><i>Experiences</i><i>Events</i><i>Go deeper</i><i>About</i></div>
+        <div class="wplan">My plan <span class="dot">5</span></div>
+      </div>
+      <div class="lhead" style="display:flex;align-items:center;gap:16px"><h2>My Sydney plan</h2><span style="font-size:12px;color:#6A6F78">5 stops · 1 day · est. cost $56</span></div>
+      <div class="pdays">
+        <span class="pd on">Day 1 · Sat</span><span class="pd">Day 2 · Sun</span><span class="pd" style="border-style:dashed">+ Add day</span>
+        <span class="pin" style="left:330px;top:6px">14</span>
+      </div>
+      <div class="ptimeline">
+        <div class="ptoday">
+          <div class="row"><span>Time on the go</span><span>6.5 h</span></div>
+          <div class="bar"><span class="f" style="width:58%"></span></div>
+          <div class="row"><span>Estimated cost</span><span>$56 / person</span></div>
+          <div class="bar"><span class="f" style="width:30%;background:#2E8C8C"></span></div>
+          <div class="row"><span>Walking</span><span>4.2 km</span></div>
+          <div class="bar"><span class="f" style="width:40%;background:#9AA0AA"></span></div>
+          <div style="margin-top:16px;font-size:11px;color:#6A6F78;line-height:1.5">Tip: swap Bridge walk for an afternoon slot to beat the 10am queue.</div>
+          <span class="pin" style="left:8px;top:150px">15</span>
+        </div>
+        <div class="pitems">
+          <div class="pitem"><span class="grip">⋮⋮</span><span class="t">09:30</span><div><div class="n">Harbour Bridge walk & tunnels</div><div class="m">1.5 h · $42 · Potts Ledge, The Rocks</div></div><div class="g"><span class="ic">✎</span><span class="ic">×</span></div></div>
+          <div class="pitem"><span class="grip">⋮⋮</span><span class="t">11:45</span><div><div class="n">The Rocks heritage stroll</div><div class="m">1 h · Free · 15 min walk from stop 1</div></div><div class="g"><span class="ic">✎</span><span class="ic">×</span></div></div>
+          <div class="pitem"><span class="grip">⋮⋮</span><span class="t">13:30</span><div><div class="n">Lunch: The Rocks food stalls</div><div class="m">1 h · ~$25 · user-added note</div></div><div class="g"><span class="ic">✎</span><span class="ic">×</span></div></div>
+          <div class="pitem"><span class="grip">⋮⋮</span><span class="t">15:30</span><div><div class="n">Ferry: Circular Quay → Manly</div><div class="m">20 min · $7.30 · best view at this time</div></div><div class="g"><span class="ic">✎</span><span class="ic">×</span></div></div>
+          <div class="pitem"><span class="grip">⋮⋮</span><span class="t">16:00</span><div><div class="n">Manly Beach & Icebergs look</div><div class="m">2 h · Free · golden hour light</div></div><div class="g"><span class="ic">✎</span><span class="ic">×</span></div></div>
+          <span class="pin" style="left:10px;top:240px">16</span>
+          <span class="pin" style="left:1150px;top:96px">17</span>
+        </div>
+      </div>
+      <div class="wstrip" style="margin-top:0">
+        <span class="st">Share this day</span>
+        <span style="font-size:12px;color:#6A6F78">One link — opens on any phone, no account needed</span>
+        <span class="add" style="border-color:var(--ink);color:var(--ink)">Copy share link</span>
+        <span class="add">Download PDF</span>
+        <span class="pin" style="left:760px;top:-10px">18</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="a"><span class="num">14</span><b>Day tabs</b>Multi-day trips are the return-visitor case (David: 10 nights). Dashed “Add day” keeps extension obvious. Active day = ink fill; the rest of the page re-renders per day.</div>
+      <div class="a"><span class="num">15</span><b>Day summary panel</b>Auto-computed: time, cost, distance. This is the payoff for the cost/time research — users see the trip’s shape, not just a list. The “tip” line is where weather-aware suggestions land (research gap: daily re-planning).</div>
+      <div class="a"><span class="num">16</span><b>Drag to reorder</b>Grab handles on every row; reordering re-computes times, walking legs and the summary panel instantly. Reordering is the single biggest “planning” interaction on the site.</div>
+      <div class="a"><span class="num">17</span><b>Edit / remove inline</b>Each stop is editable (change time, note) or removable without leaving the page — low-friction iteration, matching “decide fast” persona behaviour.</div>
+      <div class="a"><span class="num">18</span><b>Share = the retention hook</b>Jenna’s case: send the day to her friend. One link, no login, phone-optimised; PDF export for print. Share is promoted to a primary action because it’s the concept’s word-of-mouth loop.</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><b>Key:</b></span>
+    <span class="k"><span class="sw"></span> placeholder media / neutral</span>
+    <span class="k"><span class="sw" style="background:#0B1F3A"></span> primary UI / selected</span>
+    <span class="k"><span class="sw" style="background:#FF6B4A"></span> single committed action (coral, ≤10% of screen)</span>
+    <span class="k"><span class="sw" style="background:#FFF6E8;border-color:#E8B84B"></span> annotation</span>
+    <span style="margin-left:auto">Grid: 12-col · 24px gutter · 8px rhythm · cards 10px radius · chips 8px · buttons 999px</span>
+  </div>
+</div>
+</body>
+</html>

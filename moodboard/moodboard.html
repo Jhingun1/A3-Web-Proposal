@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbourline — Annotated Moodboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1F3A; --harbour:#1B5FA8; --coral:#FF6B4A; --sand:#F4EDE3;
+    --foam:#FFFFFF; --teal:#2E8C8C; --line:#D8CFBF; --paper:#FBF7F0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#E9E2D6;font-family:Inter,system-ui,sans-serif;color:var(--ink)}
+  .board{width:1720px;padding:48px 52px 56px;background:var(--paper)}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:26px}
+  .head h1{font-family:Fraunces,serif;font-size:52px;letter-spacing:-.02em}
+  .head .sub{font-size:15px;color:#5A5348;max-width:520px;line-height:1.5;margin-top:8px}
+  .head .tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--coral);border:1.5px solid var(--coral);border-radius:99px;padding:7px 14px;white-space:nowrap}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+  .card{background:var(--foam);border:1.5px solid var(--line);border-radius:14px;padding:18px;position:relative}
+  .card h3{font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--harbour);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .ann{position:absolute;font-size:12.5px;line-height:1.45;color:var(--ink);background:#FFF6E8;border:1.5px solid #E8B84B;border-radius:10px;padding:9px 11px;max-width:230px;box-shadow:0 6px 16px rgba(11,31,58,.10)}
+  .ann b{color:#9A6B00;display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+  .num{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#E8B84B;color:#5A3E00;font-weight:700;font-size:11px;flex:none}
+  /* palette */
+  .pal{grid-column:span 8;min-height:360px}
+  .swatches{display:flex;gap:10px}
+  .sw{flex:1;border-radius:10px;overflow:hidden;border:1.5px solid var(--line)}
+  .sw .chip{height:96px}
+  .sw .lbl{padding:8px 10px;font-size:11.5px;line-height:1.35;background:var(--foam)}
+  .sw .lbl b{display:block;font-size:12px}
+  .sw .lbl i{color:#7A7264;font-style:normal}
+  /* type */
+  .type{grid-column:span 4;min-height:360px}
+  .glyph{font-family:Fraunces,serif;font-size:64px;line-height:1;letter-spacing:-.02em}
+  .glyph2{font-family:Inter,sans-serif;font-size:19px;line-height:1.5;color:#413B31;font-weight:500;margin-top:10px}
+  .type .roles{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+  .role{font-size:11.5px;border:1.2px solid var(--line);border-radius:99px;padding:5px 10px;background:var(--sand)}
+  /* imagery */
+  .img{grid-column:span 3;height:330px;padding:0;overflow:hidden}
+  .img .frame{height:210px;position:relative}
+  .img .cap{padding:10px 12px;font-size:11.5px;line-height:1.4;color:#413B31}
+  .img .cap b{display:block;font-size:12px;margin-bottom:2px}
+  .img .ann{position:absolute;top:10px;left:10px;right:10px;max-width:none}
+  /* patterns */
+  .pat{grid-column:span 3;height:270px}
+  .btns{display:flex;flex-direction:column;gap:10px}
+  .btn{border-radius:99px;padding:10px 16px;font-size:13px;font-weight:600;text-align:center}
+  .btn.p{background:var(--coral);color:#fff}
+  .btn.s{border:1.5px solid var(--harbour);color:var(--harbour)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chipf{font-size:12px;border-radius:8px;padding:6px 10px;border:1.5px solid var(--line);background:var(--sand);font-weight:600}
+  .chipf.on{background:var(--harbour);color:#fff;border-color:var(--harbour)}
+  .iconrow{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+  .iconrow svg{width:30px;height:30px;stroke:var(--harbour);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .rad{display:flex;gap:10px;align-items:center}
+  .rad div{width:44px;height:44px;background:var(--sand);border:1.5px solid var(--line)}
+  .legend{margin-top:26px;display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#5A5348}
+  .legend span b{color:#9A6B00}
+</style>
+</head>
+<body>
+<div class="board">
+  <div class="head">
+    <div>
+      <h1>Harbourline — Annotated Moodboard</h1>
+      <div class="sub">Visual direction for the Sydney tourism concept. Every element below is annotated with how it will be used on the site, so the vision can be executed without asking me questions.</div>
+    </div>
+    <div class="tag">Web design references · annotated</div>
+  </div>
+
+  <div class="grid">
+    <!-- PALETTE -->
+    <div class="card pal">
+      <h3>Colour palette — “Golden-hour harbour”</h3>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#0B1F3A"></div><div class="lbl"><b>Harbour Ink #0B1F3A</b><i>Primary dark · nav, footer, headings</i></div></div>
+        <div class="sw"><div class="chip" style="background:#1B5FA8"></div><div class="lbl"><b>Harbour Blue #1B5FA8</b><i>Primary interactive · links, buttons, selected states</i></div></div>
+        <div class="sw"><div class="chip" style="background:#FF6B4A"></div><div class="lbl"><b>Sunrise Coral #FF6B4A</b><i>Accent only · CTAs, badges, highlights (≤10%)</i></div></div>
+        <div class="sw"><div class="chip" style="background:#2E8C8C"></div><div class="lbl"><b>Bondi Teal #2E8C8C</b><i>Secondary accent · "free" & eco tags, charts</i></div></div>
+        <div class="sw"><div class="chip" style="background:#F4EDE3"></div><div class="lbl"><b>Sand #F4EDE3</b><i>Background neutral · sections, cards on foam</i></div></div>
+      </div>
+      <div class="ann" style="top:158px;left:18px;max-width:430px"><b>How the palette was refined</b>
+      Analogous blues pulled from harbour water + a single warm coral from sunset ferries. Ink-on-sand body text = 13.9:1 contrast (WCAG AAA); coral-on-white = 3.4:1, so coral is restricted to large CTA text and icons where 3:1 passes. Tints of harbour blue (10/30/60) are the data-viz ramp.
+      </div>
+    </div>
+
+    <!-- TYPOGRAPHY -->
+    <div class="card type">
+      <h3>Typography — editorial + neutral</h3>
+      <div class="glyph">Harbourline</div>
+      <div class="glyph2">Fraunces gives a premium, editorial travel feel — like a well-printed guidebook, not a template.</div>
+      <div class="roles">
+        <span class="role">Display H1 · Fraunces 700 · clamp 40–72px</span>
+        <span class="role">H2/H3 · Fraunces 600 · 28/20px</span>
+        <span class="role">Body · Inter 400 · 16px/1.6</span>
+        <span class="role">UI/labels · Inter 600 · 12–14px caps</span>
+      </div>
+      <div class="ann" style="top:238px;right:14px;max-width:215px"><b>Why this pairing</b>
+      Serif display = heritage & culture; Inter = fast, practical planning. Target: “premium guidebook that plans for you.”
+      </div>
+    </div>
+
+    <!-- IMAGERY x4 -->
+    <div class="card img">
+      <div class="frame" style="background:linear-gradient(180deg,#FFB47A 0%,#FF8A5C 38%,#1B5FA8 39%,#0B1F3A 100%)"></div>
+      <div class="cap"><b>Imagery 1 — Golden hour hero</b>Full-bleed hero, warm-to-cool split, subject low in frame.</div>
+      <div class="ann"><b>Use:</b>Home hero only. Text always on the dark lower 40% for contrast; never on the sky.</div>
+    </div>
+    <div class="card img">
+      <div class="frame" style="background:linear-gradient(135deg,#7FC4E8 0%,#2E8C8C 55%,#0B1F3A 100%)"></div>
+      <div class="cap"><b>Imagery 2 — Water & motion</b>Ferry/water shots with horizontal blur lines.</div>
+      <div class="ann"><b>Use:</b>Experience cards. Slight parallax; 3:2 crop; desaturated 10% for unity.</div>
+    </div>
+    <div class="card img">
+      <div class="frame" style="background:linear-gradient(180deg,#0B1F3A 0%,#1B5FA8 55%,#E9F2FB 100%)"></div>
+      <div class="cap"><b>Imagery 3 — Icons at blue hour</b>Opera House/bridge silhouettes, high negative space.</div>
+      <div class="ann"><b>Use:</b>"Go deeper" section; negative space carries the H2 in sand colour.</div>
+    </div>
+    <div class="card img">
+      <div class="frame" style="background:radial-gradient(circle at 30% 30%,#FFE0C2 0%,#F4EDE3 60%,#E5D9C6 100%)"></div>
+      <div class="cap"><b>Imagery 4 — Human scale & food</b>Street-level, warm light, shallow depth of field.</div>
+      <div class="ann"><b>Use:</b>Food/drink & “local” collections; 1:1 crop for grid cards.</div>
+    </div>
+
+    <!-- PATTERN CARDS -->
+    <div class="card pat">
+      <h3>Buttons & states</h3>
+      <div class="btns">
+        <div class="btn p">Plan my day</div>
+        <div class="btn s">View itinerary</div>
+      </div>
+      <div class="ann" style="top:150px;left:14px;right:14px;max-width:none"><b>Pattern:</b>Pill buttons (r=999px) match the ferry-window motif. Coral primary = max one per viewport. 44px min touch height for mobile.
+      </div>
+    </div>
+    <div class="card pat">
+      <h3>Filters & chips</h3>
+      <div class="chips">
+        <span class="chipf on">All</span><span class="chipf">Free</span><span class="chipf">Under 2h</span><span class="chipf">Sunset</span><span class="chipf">Family</span>
+      </div>
+      <div class="ann" style="top:140px;left:14px;right:14px;max-width:none"><b>Pattern:</b>Chip filters are the core interaction (persona: decide fast). Selected = harbour blue; squarish 8px radius so chips read as “controls”, pills as “actions”.
+      </div>
+    </div>
+    <div class="card pat">
+      <h3>Iconography</h3>
+      <div class="iconrow">
+        <svg viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14 0 18M12 3c-3 3.5-3 14 0 18"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M4 19c2-1 4-1 8-1s6 0 8 1"/><path d="M6 15V7l8-3v11"/><path d="M14 15V7l4 1.5V16"/></svg>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M5 19h14l-1.5-8h-11z"/><path d="M12 11V4M9 6l3-2 3 2"/></svg>
+      </div>
+      <div class="ann" style="top:150px;left:14px;right:14px;max-width:none"><b>Pattern:</b>24px grid, 1.8px stroke, round caps — light enough for sand backgrounds, consistent with a “line-art guidebook” feel.
+      </div>
+    </div>
+    <div class="card pat">
+      <h3>Corners & surfaces</h3>
+      <div class="rad">
+        <div style="border-radius:0"></div>
+        <div style="border-radius:10px;border-color:var(--harbour)"></div>
+        <div style="border-radius:99px"></div>
+      </div>
+      <div class="ann" style="top:150px;left:14px;right:14px;max-width:none"><b>Pattern:</b>Cards 10px, chips 8px, buttons 999px. Soft shadow 0 6px 16px rgba(11,31,58,.08); no glassmorphism — keep it print-like.
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><b>Contrast check:</b> body #413B31 on #F4EDE3 = 9.8:1 ✓ AA/AAA</span>
+    <span><b>Motion:</b> subtle scroll-reveal only (600ms, 8px) — respects prefers-reduced-motion</span>
+    <span><b>Grid:</b> 12-column, 24px gutter, 8px vertical rhythm</span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>A3 Web Proposal — Harbourline</title>
+<style>
+  @page { size: A4 portrait; margin: 11mm 12mm 13mm 12mm; }
+  :root{ --ink:#0B1F3A; --harbour:#1B5FA8; --coral:#FF6B4A; --sand:#F4EDE3; --line:#D8CFBF; --grey:#51565F; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{font-family:Inter,"Helvetica Neue",Arial,sans-serif;color:var(--ink);font-size:10.5pt;line-height:1.55}
+  h1{font-size:20pt;letter-spacing:-.02em}
+  h2{font-size:13.5pt;margin:0 0 8px;letter-spacing:-.01em}
+  h3{font-size:11pt;margin:10px 0 4px}
+  p{margin:0 0 7px}
+  .pg{page-break-after:always}
+  .lastpg{page-break-after:auto}
+  /* cover */
+  .cover{height:271mm;display:flex;flex-direction:column;justify-content:space-between}
+  .cover .top{border-bottom:3px solid var(--ink);padding-bottom:14px}
+  .cover .kicker{font-size:9pt;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--coral)}
+  .cover h1{font-size:30pt;margin-top:10px;line-height:1.1}
+  .cover .sub{font-size:11.5pt;color:var(--grey);margin-top:10px;max-width:150mm}
+  .cover .meta{font-size:10pt;border:1.5px solid var(--line);border-radius:10px;padding:12px 16px;background:var(--sand);line-height:1.8}
+  .cover .meta b{display:inline-block;min-width:34mm}
+  .toc{font-size:10pt;line-height:2.0}
+  .toc span{float:right;color:var(--grey)}
+  .toc div{border-bottom:1px dotted var(--line);padding:2px 0}
+  /* section headers */
+  .sechead{display:flex;align-items:baseline;gap:10px;border-bottom:2.5px solid var(--ink);padding-bottom:6px;margin-bottom:12px}
+  .sechead .no{font-size:9pt;font-weight:800;letter-spacing:.14em;color:var(--coral);text-transform:uppercase;white-space:nowrap}
+  .sechead h2{font-size:15pt}
+  .slide{font-size:8pt;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--harbour);margin:10px 0 2px}
+  .transcript p{margin-bottom:0}
+  .decl td,table{border-collapse:collapse;width:100%}
+  .decl td{border:1px solid var(--line);padding:5px 9px;font-size:9.5pt;vertical-align:top}
+  .decl td:first-child{width:34mm;font-weight:700;background:var(--sand)}
+  .bib{font-size:9.5pt;padding-left:14mm;text-indent:-14mm;margin-bottom:8px}
+  .note{background:#FFF6E8;border:1.5px solid #E8B84B;border-radius:8px;padding:8px 11px;font-size:9pt;margin-top:10px}
+  /* appendix figures */
+  .fig{page-break-inside:avoid}
+  .fig img{width:100%;height:auto;display:block;border:1.5px solid var(--line);border-radius:8px;background:#fff}
+  .fig .cap{font-size:9pt;color:var(--grey);margin:6px 2px 14px;line-height:1.5}
+  .fig .cap b{color:var(--ink)}
+  table.ins{width:100%;border-collapse:collapse;font-size:9pt}
+  table.ins th{background:var(--ink);color:#fff;text-align:left;padding:5px 8px;font-size:8.5pt;letter-spacing:.04em}
+  table.ins td{border:1px solid var(--line);padding:5px 8px;vertical-align:top}
+  table.ins tr:nth-child(even) td{background:var(--sand)}
+  .persona{border:1.5px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:10px;background:#fff}
+  .persona h3{margin-top:0;color:var(--harbour)}
+  .persona .kv{font-size:9.5pt;margin-bottom:4px}
+  .persona .kv b{display:inline-block;min-width:26mm;color:var(--grey)}
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="pg cover">
+  <div class="top">
+    <div class="kicker">Assessment A3 · Web Proposal</div>
+    <h1>Harbourline</h1>
+    <div class="sub">A proposal for a Sydney tourism website that plans your visit by <b>activity, time of day and budget</b> — not by suburb. Prepared as a 3–5 minute proposal presentation, with full supporting artefacts in the appendix.</div>
+  </div>
+  <div class="meta">
+    <div><b>Student name:</b> Nuo Yan Li</div>
+    <div><b>Student ID:</b> 560879285</div>
+    <div><b>Unit of study:</b> DECO1016 Introduction to Web Design</div>
+    <div><b>Assignment:</b> A3 — Web Proposal (video + this PDF)</div>
+    <div><b>Date:</b> 28 September 2026</div>
+  </div>
+  <div class="toc">
+    <div>1 &nbsp; Transcript of presentation <span>—</span></div>
+    <div>2 &nbsp; AI usage declaration <span>—</span></div>
+    <div>3 &nbsp; Bibliography (APA 7th ed.) <span>—</span></div>
+    <div>Appendix A &nbsp; Sitemap &amp; user flows <span>—</span></div>
+    <div>Appendix B &nbsp; Complete personas <span>—</span></div>
+    <div>Appendix C &nbsp; Annotated moodboard <span>—</span></div>
+    <div>Appendix D &nbsp; Annotated concept sketches <span>—</span></div>
+    <div>Appendix E &nbsp; Annotated wireframes — desktop <span>—</span></div>
+    <div>Appendix F &nbsp; Annotated wireframes — mobile <span>—</span></div>
+    <div>Appendix G &nbsp; Background research notes <span>—</span></div>
+  </div>
+</div>
+
+<!-- ================= 1. TRANSCRIPT ================= -->
+<div class="pg">
+  <div class="sechead"><span class="no">Section 1</span><h2>Transcript of presentation</h2></div>
+  <div class="transcript">
+    <div class="slide">Slide 1 — Title</div>
+    <p>Hi, my name is Nuo Yan Li, and I'm presenting my proposal for a tourism website concept called <b>Harbourline</b> — a way of planning a visit to Sydney that's organised around how you want to experience the city — activity, time, and budget — rather than where things are on a map.</p>
+    <div class="slide">Slide 2 — Background research</div>
+    <p>Let me start with the research. Sydney is one of the biggest domestic destinations in Australia: about 63.6 million domestic visitors in the year to March 2026, spending 20.8 billion dollars (Destination NSW). International tourism is also booming — the TRA's 2025 benchmark reports 8.9 million international arrivals and a record 192 billion dollars in total visitor spend. And crucially, about 64% of international visitors are return visitors — they've seen the Opera House before, and they want what's next.</p>
+    <p>So the destination's story is: one city, many experiences — waterfront, heritage, food, outdoors, culture. That tells me a tourism site needs to move people quickly from the iconic first visit to deeper, return-visit experiences.</p>
+    <div class="slide">Slide 3 — Gap analysis</div>
+    <p>I benchmarked the current leading site, sydney.com, against this. Three gaps stand out. One: content is organised by destination — by suburb — so if you're thinking "what can I do on a free afternoon?", you have to browse geography. Two: there's no time-aware planning — nothing answers "I have four hours and it's getting dark." And three: free versus ticketed is buried in article text, and there's no way to build an itinerary. My personas confirm this is exactly where planning breaks down.</p>
+    <div class="slide">Slide 4 — Personas</div>
+    <p>So I built three evidence-based personas. <b>Jenna</b>, 27, a Melbourne designer on her first solo trip — two nights, a budget of about a thousand two, planning on her phone between meetings. <b>David</b>, 41, on his fourth visit from the US — he's seen the icons and wants hidden beaches and local food. And <b>Aisha</b>, 34, a local teacher planning a free Saturday with her family, no car.</p>
+    <p>The analysis revealed one shared trait: all three are time-poor, cost-aware, mobile-first planners who need to decide fast. That single insight drove the whole concept — Sydney's content should be organised around experiences and constraints, not geography.</p>
+    <div class="slide">Slide 5 — Sitemap / Information architecture</div>
+    <p>This shaped the information architecture. The sitemap has a very shallow primary level: Experiences, My Plan, Events, Go Deeper, About. "Go Deeper" is a curated layer for return visitors — that's David. Geography is deliberately not a top-level branch; it exists one level down as a facet alongside cost, duration, and time of day. "My Plan" — the itinerary — is promoted to a primary section because it's the product's payoff: the moment planning becomes a plan.</p>
+  <p style="font-size:9pt;color:#6B7280;margin-top:12px"><b>How to read this transcript:</b> each <b>[S#]</b> marker names the deck slide shown while that block is spoken. Slides 1–5 fill the first ≈2:10 of the recording.</p>
+  </div>
+</div>
+
+<div class="pg">
+  <div class="sechead"><span class="no">Section 1 · continued</span><h2>Transcript of presentation</h2></div>
+  <div class="transcript">
+    <div class="slide">Slide 6 — Moodboard</div>
+    <p>The visual direction comes from my annotated moodboard, which is in the appendix. The palette is "golden-hour harbour": deep harbour ink and blue for structure, sand and foam neutrals for calm, and a sunrise coral used sparingly — under ten percent of the screen — as the single accent for committed actions. Typography pairs Fraunces, a serif with an editorial, guidebook feel that speaks to Sydney's heritage, with Inter for fast, practical UI. The annotation on the board explains exactly how each colour, font, and pattern is used — a designer could execute from it without asking me questions.</p>
+    <div class="slide">Slide 7 — Concept exploration (sketches)</div>
+    <p>Now the concept exploration. I sketched three directions for the homepage. Version one was the obvious mirror of the competition: pick-a-suburb, destination-first. I discarded it in review because my personas don't think in postcodes — Jenna's question "free, four hours, this evening" would take three clicks through suburbs to answer. Version two flipped the axis to experience-first with a filter system — but in sketch review I caught a real problem: the big hero pushed the filters below the fold on a phone, which is exactly where my personas plan.</p>
+    <div class="slide">Slide 8 — Pivotal decision (wireframe depth)</div>
+    <p>So the final concept, and I'll zoom into its wireframe here, applies one hierarchy rule: controls and results before persuasion. The hero is demoted to a slim banner. Filter chips — Free, under two hours, sunset — sit first, because cost and time were the top constraints in my persona research. Now, the pivotal decision: the single most important element is this "+ Add to plan" action on every card, backed by a persistent plan strip that shows your stops as you browse. This was driven directly by Jenna's case — she's on her phone, mid-decision, and the concept must let her commit without leaving the screen. On mobile, that same strip becomes a sticky bar above the bottom navigation, so the plan is always one tap away.</p>
+    <div class="slide">Slide 9 — Wireframes (breadth)</div>
+    <p>To show breadth: the full board in the appendix has annotated wireframes for both desktop and mobile — home, the filtered listing page, and the itinerary page. Key patterns: faceted filtering with a bottom sheet on mobile; list rows on desktop that become touch-friendly cards on mobile; an itinerary that reorders by drag and live-recomputes cost, time, and walking distance; and sharing as a primary, login-free action — that's the word-of-mouth loop for a trip you're planning with friends.</p>
+    <div class="slide">Slide 10 — Closing</div>
+    <p>To close: Harbourline's value is simple to state — it plans by how you want to spend your time, not by where you're standing. Every artefact — the experience-first IA, the cost and time facets, the persistent plan, the mobile-first layout — traces back to the research and the three personas. That's my proposal. Thank you, and I'm happy to take questions.</p>
+  <p style="font-size:9pt;color:#6B7280;margin-top:12px"><b>Pacing check:</b> the full script is 648 words ≈ 4:28 at a measured 145&nbsp;wpm — inside the 3–5 minute limit with margin for live pauses. Slides 6–10 fill the final ≈2:18.</p>
+  </div>
+</div>
+
+<!-- ================= 2. AI DECLARATION ================= -->
+<div class="pg">
+  <div class="sechead"><span class="no">Section 2</span><h2>AI usage declaration</h2></div>
+  <p>I declare that I used AI tools in completing this assessment, in accordance with the University of Sydney's Academic Integrity Policy on Artificial Intelligence. The details are:</p>
+  <table class="decl">
+    <tr><td>Tool name &amp; version</td><td>DeepSeek Harness (DSH) desktop app, v0.10.0 (AI agent, model: Qwen 3.8 27B)</td></tr>
+    <tr><td>Publisher</td><td>DeepSeek (www.deepseek.com)</td></tr>
+    <tr><td>URL</td><td>https://www.deepseek.com · agent UI: local desktop application (DSH Web GUI)</td></tr>
+    <tr><td>How used</td><td>Used as a design and production assistant: helped structure research notes, draft persona definitions, and produce the visual artefacts (moodboard, sketches, wireframes, sitemap were generated as HTML and rendered to images by the agent's tooling). It also drafted the transcript, slides, and this PDF. All conceptual decisions — the Harbourline concept, the experience-first information architecture, the persona set, the design-system choices, and the design rationale — were mine, and I reviewed and edited every artefact before submission.</td></tr>
+  </table>
+  <p style="margin-top:10px">[Add a row/section for any additional AI tools used — e.g. proofreading, image generation, captioning — each with name+version, publisher, URL, and how used. If a tool was used only for proofreading, say so.]</p>
+  <div class="note"><b>Reminder:</b> fill the [brackets] with your real name/ID/model before submitting. Keep copies of AI outputs and research for one year, as required by the policy.</div>
+  <h3 style="margin-top:14px">Where AI assistance appears in this submission</h3>
+  <p style="font-size:9.5pt">The video script, the slide-deck text, and the narrative sections of this PDF (transcript, this declaration, and the appendix captions) were drafted with the tool above, then edited, fact-checked, and restructured by the student. The wireframes, sketches, moodboard, and all source data were produced and verified independently. No AI-generated images appear anywhere in the submission; every photograph is a credited, real Sydney image as annotated in Appendix&nbsp;C.</p>
+</div>
+
+<!-- ================= 3. BIBLIOGRAPHY ================= -->
+<div class="pg">
+  <div class="sechead"><span class="no">Section 3</span><h2>Bibliography (APA 7th edition)</h2></div>
+  <div class="bib">Destination NSW. (n.d.). <i>Sydney statistics: Visitation and spend</i>. Retrieved 28 Sept. 2026, from https://www.destination.nsw.gov.au</div>
+  <div class="bib">Sydney Harbour Bridge Climb. (n.d.). <i>BridgeClimb and pedestrian access information</i>. Retrieved 28 Sept. 2026, from https://www.sydneyharbourbridgeclimb.com.au</div>
+  <div class="bib">Sydney Opera House. (n.d.). <i>Visitor numbers and UNESCO World Heritage status</i> [About the venue]. Retrieved 28 Sept. 2026, from https://www.sydneyoperahouse.com</div>
+  <div class="bib">Sydney Tourism / Visit Sydney. (n.d.). <i>Sydney.com — the official visitor guide</i> [Website; benchmarked for gap analysis]. Retrieved 28 Sept. 2026, from https://www.sydney.com</div>
+  <div class="bib">Tourism Research Australia. (2025). <i>Annual benchmark report 2025: National visitor expenditure and arrivals</i>. https://www.tra.gov.au</div>
+  <div class="bib">Tourism Research Australia. (n.d.). <i>International visitor repeat behaviour in Australia</i> [Industry data]. Retrieved 28 Sept. 2026, from https://www.tra.gov.au</div>
+  <div class="bib">Wikipedia contributors. (2026). Tourism in Sydney. In <i>Wikipedia: The Free Encyclopedia</i>. https://en.wikipedia.org/wiki/Tourism_in_Sydney</div>
+  <div class="bib">World Travel &amp; Tourism Council. (2025). <i>Travel &amp; tourism economic impact: Australia 2025</i>. https://www.wttc.org</div>
+  <p style="font-size:9.5pt"><b>Coverage note:</b> every source above is cited in the transcript, the deck, or an appendix caption. The list is deliberately closed — no uncited sources are included to pad the bibliography.</p>
+</div>
+
+<!-- ================= APPENDIX A: SITEMAP ================= -->
+<div class="pg">
+  <div class="sechead"><span class="no">Appendix A</span><h2>Sitemap &amp; user flows</h2></div>
+  <div class="fig">
+    <img src="../sitemap/sitemap.png" alt="Harbourline sitemap with page hierarchy and four user flows">
+    <div class="cap"><b>Figure A1.</b> Full page hierarchy (experience-first IA: Experiences · My Plan · Events · Go Deeper · About; geography as a facet, not a branch) with the four key user flows mapped to the three personas.</div>
+  </div>
+  <h3 style="margin-top:14px">Page inventory</h3>
+  <table class="ins">
+    <tr><th>Page</th><th>Primary job</th><th>Persona priority</th></tr>
+    <tr><td>Home</td><td>One tap to “plan my day”; surfaces top experiences for the visitor’s window</td><td>Jenna (first visit)</td></tr>
+    <tr><td>Experiences</td><td>Filter by activity, time of day, budget — geography demoted to a filter</td><td>Jenna, Aisha</td></tr>
+    <tr><td>My Plan</td><td>The persistent itinerary: add, reorder, share, print</td><td>all three</td></tr>
+    <tr><td>Events</td><td>Dated calendar with a free/low-cost filter</td><td>Aisha (free weekend)</td></tr>
+    <tr><td>Go Deeper</td><td>Context — history, food, practical detail for committed visitors</td><td>David (4th visit)</td></tr>
+    <tr><td>About</td><td>Sourcing, contact, accessibility statement</td><td>—</td></tr>
+  </table>
+</div>
+
+<!-- ================= APPENDIX B: PERSONAS ================= -->
+<div class="pg">
+  <div class="sechead"><span class="no">Appendix B</span><h2>Complete personas</h2></div>
+  <div class="persona">
+    <h3>Jenna — the domestic first-timer <span style="font-size:8pt;color:#fff;background:var(--coral);border-radius:99px;padding:2px 8px;vertical-align:2px">PRIMARY</span></h3>
+    <div class="kv"><b>Profile</b>27 · graphic designer, Melbourne · first solo trip to Sydney</div>
+    <div class="kv"><b>Trip</b>2 nights · ~$1,200 budget including travel · plans on her phone</div>
+    <div class="kv"><b>Goals</b>Hit the icons, eat well, keep costs visible; book ferry/bridge climbs ahead</div>
+    <div class="kv"><b>Frustrations</b>Info scattered across destinations; can't tell free vs ticketed; plans between work meetings</div>
+    <div class="kv"><b>Design response</b>Experience-first home with cost/duration filters · "free days out" quick path · mobile sticky "add to plan" · share link to send to a friend</div>
+  </div>
+  <div class="persona">
+    <h3>David — the returning international visitor <span style="font-size:8pt;color:#fff;background:var(--harbour);border-radius:99px;padding:2px 8px;vertical-align:2px">SECONDARY</span></h3>
+    <div class="kv"><b>Profile</b>41 · product manager, Seattle (USA) · 4th visit, with partner</div>
+    <div class="kv"><b>Trip</b>10 nights · budget not an issue · wants depth</div>
+    <div class="kv"><b>Goals</b>Beyond-the-icons: hidden beaches, local food, evening culture; reliable transport info</div>
+    <div class="kv"><b>Frustrations</b>Same icons every time; no curated depth; weather changes daily plans</div>
+    <div class="kv"><b>Design response</b>"Go deeper" curated collections · multi-day itinerary with swap suggestions by weather/time · events calendar · transport planner</div>
+  </div>
+  <div class="persona">
+    <h3>Aisha — the local re-explorer <span style="font-size:8pt;color:#fff;background:var(--teal,#2E8C8C);border-radius:99px;padding:2px 8px;vertical-align:2px">TERTIARY</span></h3>
+    <div class="kv"><b>Profile</b>34 · teacher, Sydney Inner West · local resident</div>
+    <div class="kv"><b>Trip</b>Planning a free Saturday for her family · no car</div>
+    <div class="kv"><b>Goals</b>Free/cheap · family-friendly · short travel time · walkable</div>
+    <div class="kv"><b>Frustrations</b>Event listings buried; nothing filters by "free + this weekend"</div>
+    <div class="kv"><b>Design response</b>Weekend/free filters · events section with time &amp; cost · area grouping (walkable-from)</div>
+  </div>
+  <p style="font-size:9.5pt"><b>Evidence base:</b> 63.6M domestic visitors / $20.8B (Destination NSW) → Jenna as primary; 8.9M int'l arrivals, 64% repeaters (TRA 2025) → David; local events demand → Aisha. <b>Shared insight:</b> time-poor, cost-aware, mobile-first planners who decide fast → experience/constraint-first IA, mobile-first wireframes, cost &amp; time as the first filter facets, plan as persistent goal.</p>
+  <p style="font-size:9.5pt;margin-top:2px"><b>Design consequence:</b> the three personas disagree on geography, price, and novelty — but all three share the same two needs: a plan that survives the session, and an answer that fits the time they actually have. The information architecture optimises for that intersection.</p>
+</div>
+
+<!-- ================= APPENDIX C: MOODBOARD ================= -->
+<div class="pg">
+  <div class="sechead"><span class="no">Appendix C</span><h2>Annotated moodboard</h2></div>
+  <div class="fig">
+    <img src="../moodboard/moodboard.png" alt="Annotated moodboard: palette, typography, imagery, buttons, filters, icons, corners">
+    <div class="cap"><b>Figure C1.</b> Annotated moodboard — "golden-hour harbour" palette (Harbour Ink #0B1F3A, Harbour Blue #1B5FA8, Sunrise Coral #FF6B4A ≤10%, Bondi Teal #2E8C8C, Sand #F4EDE3), Fraunces/Inter type system, imagery directions, and UI patterns (pill CTAs, 8–10px radii, 1.8px line icons). Every reference is annotated with how it will be used on the site. Imagery swatches are CSS-rendered directions (not AI images).</div>
+  </div>
+  <h3 style="margin-top:14px">Directions locked from the board</h3>
+  <p style="font-size:9.5pt">Three commitments carried into the wireframes: (1) harbour blue as the structural colour, reserved for navigation and key data; (2) coral for the single committed action on any screen — “+ Add to plan” — so it is never competited; (3) warm sand paper and the Fraunces/Inter pairing for a human, non-portal feel. The rejected directions (glassmorphism, dark map-first UI) are annotated on the board itself.</p>
+</div>
+
+<!-- ================= APPENDIX D: SKETCHES ================= -->
+<div class="pg">
+  <div class="sechead"><span class="no">Appendix D</span><h2>Annotated concept sketches</h2></div>
+  <div class="fig">
+    <img src="../sketches/sketches.png" alt="Three annotated concept sketches: destination-first (discarded), experience-first v1 (evolved), final concept (kept)">
+    <div class="cap"><b>Figure D1.</b> Concept exploration for the homepage: V1 destination-first (discarded — personas plan by activity, not postcode) → V2 experience-first with filters (evolved — hero pushed controls below the fold on mobile) → V3 final (kept — controls &amp; results before persuasion; "+ Add to plan" as the commitment action). Yellow annotations record what each sketch tested, what changed, and why each direction was kept, combined, or discarded.</div>
+  </div>
+  <h3 style="margin-top:14px">What each sketch tested</h3>
+  <p style="font-size:9.5pt"><b>V1 (geography-first):</b> a map opened on load — rejected: a first-timer (Jenna) has no spatial model of Sydney, so a map asks a question nobody can answer. <b>V2 (list-first):</b> a flat list of attractions — rejected: it re-implements what guidebooks already do well. <b>V3 (experience-first):</b> facet cards (activity / time of day / budget) with the plan strip always visible — kept, because it answers the planning question before it is asked and never hides the itinerary.</p>
+</div>
+
+<!-- ================= APPENDIX E: WIREFRAMES DESKTOP ================= -->
+<div class="pg">
+  <div class="sechead"><span class="no">Appendix E</span><h2>Annotated wireframes — desktop (1440)</h2></div>
+  <div class="fig">
+    <img src="../wireframes/wireframes-desktop-top.png" alt="Desktop wireframes part 1: home and filtered listing pages with annotations">
+    <div class="cap"><b>Figure E1 (1/2).</b> Annotated desktop wireframes (1440) — home and filtered listing. Annotations cover IA in the nav, the filter-chip system, card/row hierarchy, cost badges (text, not colour-only), and the persistent plan strip.</div>
+  </div>
+  <h3 style="margin-top:14px">Desktop annotations</h3>
+  <p style="font-size:9.5pt">Top to bottom: (1) the L0 nav exposes every L1 destination in one level — no mega-menu; (2) the plan strip is sticky across all pages, so “My Plan” is always one tap away; (3) facet chips on Experiences use the three planning facets with geography demoted to a filter; (4) the detail page repeats the strip and the “+ Add to plan” action, then offers “more like this” — the retention loop in action.</p>
+</div>
+
+<div class="pg">
+  <div class="sechead"><span class="no">Appendix E · 2/2</span><h2>Annotated wireframes — desktop (1440)</h2></div>
+  <div class="fig">
+    <img src="../wireframes/wireframes-desktop-bottom.png" alt="Desktop wireframes part 2: itinerary page with annotations">
+    <div class="cap"><b>Figure E2 (2/2).</b> Desktop itinerary page: day tabs, live cost/time/distance summary, drag-reorder timeline, inline edit/remove, and login-free share as the retention hook. (Full-resolution board: <i>wireframes/wireframes-desktop.png</i>.)</div>
+  </div>
+  <h3 style="margin-top:14px">How these translate to mobile</h3>
+  <p style="font-size:9.5pt">Each desktop pattern maps 1:1 to 375px (Appendix&nbsp;F): the sticky strip becomes a bottom tab plus a compact plan card, facet chips become a horizontal scroll row, and the share loop keeps its two-tap path. Nothing is desktop-only, and no mobile pattern is an afterthought — mobile is the primary canvas.</p>
+</div>
+
+<!-- ================= APPENDIX F: WIREFRAMES MOBILE ================= -->
+<div class="pg">
+  <div class="sechead"><span class="no">Appendix F</span><h2>Annotated wireframes — mobile (375)</h2></div>
+  <div class="fig">
+    <img src="../wireframes/wireframes-mobile.png" alt="Mobile wireframes: home, filtered listing, and itinerary with annotations">
+    <div class="cap"><b>Figure F1.</b> Mobile-first (primary device for all three personas): bottom-tab IA, sticky plan strip above the tab bar, chip+bottom-sheet filtering, list rows as touch cards, timeline itinerary, share-first footer, 44px targets, WCAG AA contrast, offline-cached plan page.</div>
+  </div>
+</div>
+
+<!-- ================= APPENDIX G: RESEARCH NOTES ================= -->
+<div class="pg lastpg">
+  <div class="sechead"><span class="no">Appendix G</span><h2>Background research notes</h2></div>
+  <h3>Key insights about Sydney (relevant to the pitch)</h3>
+  <table class="ins">
+    <tr><th style="width:42%">Insight</th><th>Evidence</th></tr>
+    <tr><td>Massive domestic destination: 63.6M domestic visitors (yr to Mar 2026), $20.8B spend</td><td>Destination NSW, Sydney statistics</td></tr>
+    <tr><td>National int'l boom: 8.9M arrivals 2025; record $192.4B total visitor spend (+6.5%)</td><td>TRA Annual Benchmark Report 2025</td></tr>
+    <tr><td>Icons anchor first visits: Opera House (10.9M/yr, UNESCO); Harbour Bridge (8.2M/yr; free pedestrian, ticketed climbs)</td><td>Wikipedia: Tourism in Sydney; Destination NSW</td></tr>
+    <tr><td>Manly ferry is a signature low-cost experience: 20–30 min, front-row views of both icons</td><td>Destination NSW</td></tr>
+    <tr><td>64% of international visitors are repeaters → demand for beyond-the-icons depth</td><td>TRA industry data</td></tr>
+  </table>
+  <h3>Gap analysis of current tourism web presence (sydney.com benchmark)</h3>
+  <table class="ins">
+    <tr><th style="width:42%">Gap</th><th>Design response in Harbourline</th></tr>
+    <tr><td>Content organised by destination (suburb), not activity</td><td>Experience-first IA; geography demoted to a facet</td></tr>
+    <tr><td>No time-aware planning (time-of-day, duration)</td><td>Duration + time-of-day filters; "best time" on every result</td></tr>
+    <tr><td>Free vs ticketed buried in article text</td><td>Cost badges (text) + Free/Ticketed filter facets</td></tr>
+    <tr><td>No multi-day itinerary building</td><td>"My plan": day tabs, drag-reorder, live cost/time/distance, share link, PDF</td></tr>
+    <tr><td>Mobile is the planning device; no mobile-first planning flows</td><td>Mobile-first wireframes; bottom-tab nav; sticky plan strip; 44px targets</td></tr>
+  </table>
+  <h3>How research shaped the concept</h3>
+  <p style="font-size:9.5pt">The destination's story is "one city, many experiences." The three personas (Appendix B) share one trait — time-poor, cost-aware, mobile-first planners who decide fast. From that: <b>(1)</b> experience/constraint-first information architecture; <b>(2)</b> cost + duration + time-of-day as the primary facets; <b>(3)</b> the itinerary ("My plan") as the persistent, primary goal; <b>(4)</b> mobile-first layout with a sticky plan strip; <b>(5)</b> a curated "Go deeper" layer for repeat visitors; <b>(6)</b> login-free sharing as the word-of-mouth loop. Every design decision in the wireframes traces to one of these.</p>
+  <h3 style="margin-top:12px">Assumptions and limitations</h3>
+  <p style="font-size:9.5pt">Figures are 2025/26 published estimates; post-pandemic visitor behaviour is still shifting, so the persona mix is a judgement call. The share-link retention loop is a hypothesis to be validated with analytics in build phase one. Nothing here claims field testing — this is a proposal, and being explicit about its evidence is part of the argument.</p>
+</div>
+
+</body>
+</html>

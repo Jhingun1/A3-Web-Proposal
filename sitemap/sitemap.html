@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbourline — Sitemap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#0B1F3A; --harbour:#1B5FA8; --coral:#FF6B4A; --teal:#2E8C8C; --sand:#F4EDE3; --paper:#FBF7F0; --line:#D8CFBF; --grey:#6A6F78; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#E9E2D6;font-family:Inter,system-ui,sans-serif;color:var(--ink)}
+  .board{width:1600px;padding:48px 52px 56px;background:var(--paper)}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid var(--ink);padding-bottom:16px;margin-bottom:30px}
+  .head h1{font-size:40px;font-weight:800;letter-spacing:-.02em}
+  .head .sub{font-size:13.5px;color:#5A5348;max-width:560px;line-height:1.5;margin-top:8px}
+  .head .tag{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--coral);border:1.5px solid var(--coral);border-radius:99px;padding:6px 13px;white-space:nowrap}
+  .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .col{position:relative}
+  .sect{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--harbour);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .sect::after{content:"";flex:1;height:1.5px;background:var(--line)}
+  /* node */
+  .node{border:2px solid var(--ink);border-radius:10px;background:#fff;padding:10px 14px;font-size:13px;font-weight:600;position:relative;width:250px}
+  .node .lv{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);font-weight:700;display:block;margin-bottom:2px}
+  .node.root{background:var(--ink);color:#fff;border-color:var(--ink);width:300px;font-size:15px}
+  .node.root .lv{color:#B9C6D6}
+  .node.core{border-color:var(--harbour);border-width:2.5px}
+  .node.core .lv{color:var(--harbour)}
+  .node .badge{position:absolute;top:-10px;right:10px;font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:var(--coral);color:#fff;border-radius:99px;padding:2px 8px}
+  .node .badge.alt{background:var(--teal)}
+  /* tree layout */
+  .tree{display:flex;flex-direction:column;align-items:center;gap:0}
+  .lvl{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;padding:14px 0}
+  .lvl .node{width:180px}
+  .lvl .node.wide{width:220px}
+  .connector{height:26px;width:2px;background:var(--ink);margin:0 auto}
+  .branch{display:flex;gap:16px;justify-content:center;width:100%;position:relative;padding-top:14px}
+  .branch::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:2px;height:14px;background:var(--ink)}
+  .node .sub{font-size:9.5px;color:var(--grey);font-weight:500;margin-top:3px;line-height:1.4}
+  /* flows */
+  .flows{margin-top:8px;display:grid;gap:16px}
+  .flow{border:2px solid var(--line);border-radius:12px;background:#fff;padding:14px 16px}
+  .flow h4{font-size:12.5px;font-weight:800;color:var(--ink);margin-bottom:9px;display:flex;align-items:center;gap:8px}
+  .flow h4 .who{font-size:10px;font-weight:700;color:#fff;background:var(--harbour);border-radius:99px;padding:2px 9px;letter-spacing:.04em}
+  .steps{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .st{font-size:11px;font-weight:600;border:1.5px solid var(--ink);border-radius:8px;padding:5px 9px;background:var(--sand)}
+  .st.act{border-color:var(--coral);color:var(--coral);background:#fff}
+  .st.end{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .ar{color:var(--grey);font-weight:800;font-size:13px}
+  /* legend */
+  .legend{margin-top:30px;display:flex;gap:22px;flex-wrap:wrap;font-size:12px;color:#5A5348;align-items:center}
+  .legend .k{display:flex;gap:7px;align-items:center}
+  .legend .sw{width:22px;height:14px;border-radius:4px;border:2px solid var(--ink);background:#fff}
+</style>
+</head>
+<body>
+<div class="board">
+  <div class="head">
+    <div>
+      <h1>Harbourline — Sitemap &amp; User Flows</h1>
+      <div class="sub">Page hierarchy and the three primary user flows. Hierarchy is experience-first (the IA decision from research); geography lives one level down as a facet, not a branch.</div>
+    </div>
+    <div class="tag">Information architecture</div>
+  </div>
+
+  <div class="wrap">
+    <!-- LEFT: HIERARCHY -->
+    <div class="col">
+      <div class="sect">Page hierarchy</div>
+      <div class="tree">
+        <div class="node root"><span class="lv">Level 0 · global</span>Home</div>
+        <div class="connector"></div>
+        <div class="branch">
+          <div class="node core"><span class="lv">Level 1 · primary</span>Experiences<span class="badge">Core</span><div class="sub">Activity-first listing + facets</div></div>
+          <div class="node core"><span class="lv">Level 1 · primary</span>My plan<span class="badge">Core</span><div class="sub">Itinerary · multi-day · share</div></div>
+          <div class="node"><span class="lv">Level 1</span>Events<span class="sub">Calendar · free / weekend filters</div></div>
+          <div class="node"><span class="lv">Level 1</span>Go deeper<span class="sub">Curated collections (returning)</div></div>
+          <div class="node"><span class="lv">Level 1</span>About<span class="sub">Concept · accessibility · contact</div></div>
+        </div>
+        <div class="connector"></div>
+        <div class="branch">
+          <div class="node wide"><span class="lv">Level 2 · under Experiences</span>Experience detail<span class="badge alt">Detail</span><div class="sub">Cost · duration · best time · map · reviews · add-to-plan</div></div>
+          <div class="node wide"><span class="lv">Level 2 · under Experiences</span>Faceted results<div class="sub">Filter by area (geography), cost, duration, time-of-day, access</div></div>
+          <div class="node wide"><span class="lv">Level 2 · under My plan</span>Day view<div class="sub">Timeline · reorder · live cost/time summary</div></div>
+          <div class="node wide"><span class="lv">Level 2 · under My plan</span>Share / export<div class="sub">Link (no login) · PDF</div></div>
+          <div class="node wide"><span class="lv">Level 2 · under Go deeper</span>Collection detail<div class="sub">Curated themed itineraries (beyond the icons)</div></div>
+          <div class="node wide"><span class="lv">Level 2 · under Events</span>Event detail<div class="sub">Time · location · cost · add-to-plan</div></div>
+        </div>
+        <div class="connector"></div>
+        <div class="branch">
+          <div class="node wide" style="width:240px"><span class="lv">Level 3 · terminal</span>Search results<div class="sub">Natural-language planning query → same filter model</div></div>
+          <div class="node wide" style="width:240px"><span class="lv">Level 3 · terminal</span>Auth / account<div class="sub">Optional save sync · never gates sharing</div></div>
+          <div class="node wide" style="width:240px"><span class="lv">Level 3 · terminal</span>Help / accessibility<div class="sub">Statement · reduced-motion · contrast</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: FLOWS -->
+    <div class="col">
+      <div class="sect">Key user flows</div>
+      <div class="flows">
+        <div class="flow">
+          <h4>Flow A — First-timer plans a free 2-hour day <span class="who">Jenna</span></h4>
+          <div class="steps">
+            <span class="st">Home</span><span class="ar">→</span>
+            <span class="st act">Chip: Free</span><span class="ar">→</span>
+            <span class="st act">Chip: &lt; 2h</span><span class="ar">→</span>
+            <span class="st">Experiences (filtered)</span><span class="ar">→</span>
+            <span class="st act">+ Add to plan</span><span class="ar">→</span>
+            <span class="st end">My plan · Day 1</span>
+          </div>
+        </div>
+        <div class="flow">
+          <h4>Flow B — Return visitor builds beyond-the-icons days <span class="who">David</span></h4>
+          <div class="steps">
+            <span class="st">Go deeper</span><span class="ar">→</span>
+            <span class="st">Collection detail</span><span class="ar">→</span>
+            <span class="st act">Add 3 stops</span><span class="ar">→</span>
+            <span class="st">My plan</span><span class="ar">→</span>
+            <span class="st act">Reorder / weather-swap</span><span class="ar">→</span>
+            <span class="st end">Share link to partner</span>
+          </div>
+        </div>
+        <div class="flow">
+          <h4>Flow C — Local finds a free weekend, no car <span class="who">Aisha</span></h4>
+          <div class="steps">
+            <span class="st">Events</span><span class="ar">→</span>
+            <span class="st act">Filter: Free + This weekend</span><span class="ar">→</span>
+            <span class="st act">Filter: Walkable from Inner West</span><span class="ar">→</span>
+            <span class="st">Event detail</span><span class="ar">→</span>
+            <span class="st end">+ Add to plan</span>
+          </div>
+        </div>
+        <div class="flow">
+          <h4>Flow D — Discover → plan loop (the core loop) <span class="who">All</span></h4>
+          <div class="steps">
+            <span class="st">Any filtered list</span><span class="ar">→</span>
+            <span class="st act">+ Add to plan</span><span class="ar">→</span>
+            <span class="st">Sticky strip updates</span><span class="ar">→</span>
+            <span class="st end">Plan is always one tap away</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><b>Key:</b></span>
+    <span class="k"><span class="sw" style="background:var(--ink)"></span> Level 0 / terminal (ink)</span>
+    <span class="k"><span class="sw" style="border-color:var(--harbour)"></span> Core section (harbour blue)</span>
+    <span class="k"><span class="sw" style="background:var(--sand)"></span> Standard page</span>
+    <span class="k"><span class="sw" style="border-color:var(--coral);background:#fff"></span> Decision / action step (coral)</span>
+    <span style="margin-left:auto">Design principle: experience-first IA, geography as a facet, plan as the persistent goal.</span>
+  </div>
+</div>
+</body>
+</html>

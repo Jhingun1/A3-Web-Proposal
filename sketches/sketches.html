@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbourline — Annotated Concept Sketches</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#20242B; --paper:#FDFBF6; --blue:#1B5FA8; --coral:#FF6B4A; --green:#2E7D4F; --red:#C43E2E; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#EFEAE0;font-family:Inter,system-ui,sans-serif}
+  .board{width:2100px;padding:48px 52px 60px;background:var(--paper);background-image:radial-gradient(#E7E0D2 1px,transparent 1px);background-size:26px 26px}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid var(--ink);padding-bottom:16px;margin-bottom:30px}
+  .head h1{font-family:Caveat,cursive;font-size:54px;letter-spacing:.01em}
+  .head .sub{font-size:14px;color:#5A5348;max-width:620px;line-height:1.5;margin-top:6px}
+  .head .tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--blue);border:1.5px solid var(--blue);border-radius:99px;padding:7px 14px;white-space:nowrap}
+  .row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:34px;align-items:start}
+  .sketch{position:relative}
+  .frame{border:2.5px solid var(--ink);border-radius:14px;background:#fff;box-shadow:4px 5px 0 rgba(32,36,43,.12)}
+  .ver{font-family:Caveat,cursive;font-size:30px;margin-bottom:8px;display:flex;align-items:baseline;gap:10px}
+  .ver .vernum{font-size:20px;font-family:Inter,sans-serif;font-weight:700;border:2px solid var(--ink);border-radius:50%;width:30px;height:30px;display:inline-grid;place-items:center;flex:none;transform:translateY(3px)}
+  .ver .status{font-family:Inter,sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;color:#fff}
+  .status.kept{background:var(--green)} .status.dropped{background:var(--red)} .status.evolved{background:var(--blue)}
+  /* sketch primitives */
+  .sb{border:2px solid var(--ink);border-radius:8px;margin:8px;padding:8px;background:#fff}
+  .sbar{height:34px;display:flex;align-items:center;gap:8px;padding:0 10px}
+  .sbar .lg{font-family:Caveat,cursive;font-size:19px;font-weight:700}
+  .sbar .nav{margin-left:auto;display:flex;gap:12px;font-size:11px;font-weight:600;color:#444}
+  .hero{height:150px;border:2px solid var(--ink);border-radius:8px;margin:8px;display:flex;align-items:flex-end;padding:10px;font-family:Caveat,cursive;font-size:20px;background:repeating-linear-gradient(45deg,#fff,#fff 9px,#F3EFE6 9px,#F3EFE6 10px)}
+  .cols{display:grid;gap:8px;margin:0 8px 8px}
+  .c3{grid-template-columns:repeat(3,1fr)} .c2{grid-template-columns:repeat(2,1fr)} .c4{grid-template-columns:repeat(4,1fr)}
+  .card{border:2px solid var(--ink);border-radius:8px;padding:7px;font-size:10.5px;font-weight:600;color:#333;min-height:86px}
+  .card .pic{height:40px;border:1.5px dashed #9AA0AA;border-radius:5px;margin-bottom:5px;background:repeating-linear-gradient(45deg,#fff,#fff 6px,#F3EFE6 6px,#F3EFE6 7px)}
+  .pill{display:inline-block;border:2px solid var(--ink);border-radius:99px;padding:3px 10px;font-size:10.5px;font-weight:600;margin:2px 3px 2px 0}
+  .filterbar{border:2px dashed var(--blue);border-radius:8px;margin:8px;padding:6px 8px;display:flex;gap:4px;align-items:center;flex-wrap:wrap;background:#F4F8FD}
+  .filterbar .ft{font-size:10px;font-weight:700;color:var(--blue);letter-spacing:.06em;margin-right:2px}
+  .fchip{border:1.5px solid var(--blue);border-radius:6px;padding:2px 8px;font-size:10px;font-weight:600;color:var(--blue);background:#fff}
+  .fchip.on{background:var(--blue);color:#fff}
+  .tagline{font-family:Caveat,cursive;font-size:19px;color:#333;margin:6px 8px;line-height:1.2}
+  .iter{font-size:11px;font-weight:600;color:var(--blue);border-left:3px solid var(--blue);padding:4px 8px;margin:8px;background:#F4F8FD;line-height:1.45}
+  /* annotations */
+  .a{position:relative;font-size:12.5px;line-height:1.45;color:#2B2A27;background:#FFF6E8;border:1.5px solid #E8B84B;border-radius:10px;padding:9px 11px;max-width:300px;box-shadow:3px 4px 0 rgba(32,36,43,.08)}
+  .a b{color:#9A6B00;display:block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:3px}
+  .a .num{display:inline-grid;place-items:center;width:19px;height:19px;border-radius:50%;background:#E8B84B;color:#5A3E00;font-weight:700;font-size:11px;margin-right:5px;vertical-align:-3px}
+  .pin{position:absolute;width:15px;height:15px;border-radius:50%;background:#E8B84B;color:#5A3E00;font-size:10px;font-weight:700;display:grid;place-items:center;border:1.5px solid #B58A1F;box-shadow:0 2px 4px rgba(0,0,0,.25);z-index:5}
+  .anncol{margin-top:18px;display:flex;flex-direction:column;gap:12px}
+  .arrow{position:absolute;height:2px;background:#E8B84B;transform-origin:left center;z-index:4}
+  .flow{margin-top:34px;display:flex;align-items:center;justify-content:center;gap:26px;font-family:Caveat,cursive;font-size:26px}
+  .flow .step{display:flex;align-items:center;gap:26px}
+  .flow .ar{font-size:34px;color:var(--ink)}
+  .legend{margin-top:26px;font-size:12px;color:#5A5348;display:flex;gap:18px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="board">
+  <div class="head">
+    <div>
+      <h1>Harbourline — Concept Sketches (exploration → iteration → final)</h1>
+      <div class="sub">Three directions for the homepage, drawn to test structure and hierarchy. Annotations explain what each sketch was testing, what changed, and why it was kept, combined or discarded.</div>
+    </div>
+    <div class="tag">Lo-fi · annotated</div>
+  </div>
+
+  <div class="row">
+    <!-- V1 -->
+    <div class="sketch">
+      <div class="ver"><span class="vernum">1</span> Destination-first <span class="status dropped">Discarded</span></div>
+      <div class="frame">
+        <div class="sb sbar"><span class="lg">Harbourline</span><span class="nav"><i>CBD</i><i>Harbour</i><i>Beaches</i><i>North</i><i>South</i></span></div>
+        <div class="hero">Pick a suburb…</div>
+        <div class="tagline">“Choose where you’re going”</div>
+        <div class="cols c3">
+          <div class="card"><div class="pic"></div>CBD</div>
+          <div class="card"><div class="pic"></div>North Shore</div>
+          <div class="card"><div class="pic"></div>Eastern Suburbs</div>
+        </div>
+        <div class="cols c3">
+          <div class="card"><div class="pic"></div>Manly</div>
+          <div class="card"><div class="pic"></div>Western Sydney</div>
+          <div class="card"><div class="pic"></div>Southern Sydney</div>
+        </div>
+      </div>
+      <div class="anncol">
+        <div class="a"><span class="num">A1</span><b>What I was testing</b>The “obvious” mirror of sydney.com: geography as the primary axis. Safe, familiar IA.</div>
+        <div class="a"><span class="num">A2</span><b>Why it failed the brief</b>My personas plan by <i>activity and time</i>, not postcode. Jenna (“free 4-hour day in the CBD”) and Aisha (“free, this weekend, no car”) would have to click 3–4 suburbs to answer one question. It also hides the free/ticketed distinction inside each suburb article.</div>
+        <div class="a"><span class="num">A3</span><b>Outcome</b>Dropped the geographic nav as the primary axis — kept geographic grouping as a <i>secondary filter</i> on the listing page (see V3), so power users can still browse by place.</div>
+      </div>
+    </div>
+
+    <!-- V2 -->
+    <div class="sketch">
+      <div class="ver"><span class="vernum">2</span> Experience-first v1 <span class="status evolved">Evolved → V3</span></div>
+      <div class="frame">
+        <div class="sb sbar"><span class="lg">Harbourline</span><span class="nav"><i>Experiences</i><i>Itinerary</i><i>Events</i><i>About</i></span></div>
+        <div class="hero">See Sydney your way</div>
+        <div class="tagline">Big hero, message first…</div>
+        <div class="filterbar"><span class="ft">FILTER</span><span class="fchip on">Activity</span><span class="fchip">Time</span><span class="fchip">Budget</span><span class="fchip">Area</span></div>
+        <div class="cols c3">
+          <div class="card"><div class="pic"></div>Ferries & cruises</div>
+          <div class="card"><div class="pic"></div>Heritage & museums</div>
+          <div class="card"><div class="pic"></div>Beaches & walks</div>
+        </div>
+        <div class="iter">Iteration note: after the first test with persona cards, I moved the filter bar <u>up</u> — but the hero still pushes results below the fold on mobile.</div>
+      </div>
+      <div class="anncol">
+        <div class="a"><span class="num">B1</span><b>What changed vs V1</b>Primary axis flipped to <i>experience categories</i>; nav shrunk to 4 items; filters introduced (activity/time/budget/area) — the core “decide fast” idea.</div>
+        <div class="a"><span class="num">B2</span><b>Problem found in sketch review</b>The hero + headline consume the first viewport, so filters and results sit below the fold on a phone — exactly where my personas are planning (Jenna, mobile-first). A 2-day-trip planner should see <i>options and controls</i> immediately, not a slogan.</div>
+        <div class="a"><span class="num">B3</span><b>Decision carried into V3</b>Compress the hero to a slim banner, move filters <i>above</i> the grid, and add a persistent “plan” strip. Hierarchy rule: <b>controls & results before persuasion</b>.</div>
+      </div>
+    </div>
+
+    <!-- V3 -->
+    <div class="sketch">
+      <div class="ver"><span class="vernum">3</span> Final concept <span class="status kept">Kept</span></div>
+      <div class="frame">
+        <div class="sb sbar"><span class="lg">Harbourline</span><span class="nav"><i>Experiences</i><i>Events</i><i>Go deeper</i><span style="border:2px solid var(--ink);border-radius:99px;padding:1px 8px">+ My plan (2)</span></span></div>
+        <div class="hero" style="height:84px">Slim banner: “Plan your Sydney — by activity, time & budget” + search icon</div>
+        <div class="filterbar" style="margin-top:2px"><span class="ft">FILTER</span><span class="fchip on">All</span><span class="fchip">Free</span><span class="fchip">&lt; 2h</span><span class="fchip">Sunset</span><span class="fchip">Family</span><span class="fchip">Harbour</span></div>
+        <div class="cols c3">
+          <div class="card"><div class="pic"></div>Manly ferry <span style="color:var(--green)">FREE</span></div>
+          <div class="card"><div class="pic"></div>Bridge walk 1.5h <span style="color:var(--blue)">TICKETED</span></div>
+          <div class="card"><div class="pic"></div>Rocks picnics <span style="color:var(--green)">FREE</span></div>
+        </div>
+        <div class="sb" style="display:flex;align-items:center;justify-content:space-between"><span style="font-family:Caveat,cursive;font-size:19px">My plan · Day 1 (3 stops)</span><span class="pill" style="border-color:var(--coral);color:var(--coral)">+ Add stop</span></div>
+      </div>
+      <div class="anncol">
+        <div class="a"><span class="num">C1</span><b>What this sketch responds to</b>Every persona: slim banner = still one sentence of promise; chips = instant scannability of <i>cost & time</i> (Jenna, Aisha); “My plan (2)” in the nav = visible progress, the heart of the itinerary idea (David).</div>
+        <div class="a"><span class="num">C2</span><b>Hierarchy decision</b>1. filters (control) → 2. results (answer) → 3. plan strip (commitment). Persuasion (hero copy) demoted to one line — this is a tool that happens to be beautiful, not a brochure.</div>
+        <div class="a"><span class="num">C3</span><b>Accessibility pass in the sketch</b>Chips are 40px+ tall (touch), coral used only for the add-to-plan action so it stays the single “hot” element, free/ticketed badges carry text not colour alone (colour-blind safe).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow">
+    <div class="step">
+      <span>V1 — test the obvious IA</span><span class="ar">→</span>
+      <span>V2 — flip axis to experience</span><span class="ar">→</span>
+      <span>V3 — controls above persuasion</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><b style="color:#9A6B00">Yellow notes</b> = annotations (what tested / what changed / why kept or dropped)</span>
+    <span><b style="color:var(--blue)">Blue dashed</b> = the filter system, the pivotal feature of the concept</span>
+    <span>Context considered: mobile planning device (primary), tablet (secondary), desktop (research/planning)</span>
+  </div>
+</div>
+</body>
+</html>
